@@ -39,33 +39,39 @@
 
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
+        
         if len(nums) == 0:
             return []
+        
         if len(nums) == 1:
-            return [f"{nums[0]}"]
-
-        a = nums[0]
-        b = nums[0]
-        result = []
-
-
+            return [f'{nums[0]}']
+        
+        left = nums[0]
+        right = nums[0]
+        
+        res = []
+        
         for i in range(1, len(nums)):
-            if nums[i] <= b+1:
-                b = nums[i]
-            elif a<b:
-                r = f"{a}->{b}"
-                a = nums[i]
-                b = nums[i]
-                result.append(r)
+            if right + 1 >= nums[i]:
+                right = nums[i]
+                
+            elif left < right:
+                res.append(f"{left}->{right}")
+                left = nums[i]
+                right = nums[i]
+            
             else:
-                r = f"{a}"
-                a = nums[i]
-                b = nums[i]
-                result.append(r)
-        if a < b:
-            result.append(f"{a}->{b}")
+                res.append(f"{left}")
+                left = nums[i]
+                right = nums[i]
+        
+        if left == right:
+            res.append(f"{left}")
+        
         else:
-            result.append(f"{a}")
-
-        return result
+            res.append(f"{left}->{right}")
+        
+        return res
+        
+        
         
