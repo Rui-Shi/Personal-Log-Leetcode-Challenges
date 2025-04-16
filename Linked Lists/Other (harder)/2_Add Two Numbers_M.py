@@ -65,25 +65,35 @@ class Solution:
         
         dummy = ListNode()
         res = dummy
-
-        total = carry = 0
-
-        while l1 or l2 or carry:
-            total = carry
-
-            if l1:
-                total += l1.val
-                l1 = l1.next
-            if l2:
-                total += l2.val
-                l2 = l2.next
+        
+        cur1 = l1
+        cur2 = l2
+        
+        carry = 0
+        
+        while cur1 or cur2 or carry:
+            cur_sum = carry
             
-            num = total % 10
-            carry = total // 10
+            if cur1:
+                cur_sum += cur1.val
+                cur1 = cur1.next
+            
+            if cur2:
+                cur_sum += cur2.val
+                cur2 = cur2.next
+                
+            num = cur_sum % 10
+            carry = cur_sum // 10
+            
             dummy.next = ListNode(num)
             dummy = dummy.next
         
         return res.next
+                
+            
+            
+            
+            
             
         
         

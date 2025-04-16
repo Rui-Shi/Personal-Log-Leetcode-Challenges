@@ -35,17 +35,22 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()  # Create a dummy node to simplify the merging process
-        curr = dummy  # Initialize a 'curr' pointer to the dummy node
-
-        while list1 and list2:  # Iterate while both lists have nodes
-            if list1.val >= list2.val:  # Compare values of current nodes in both lists
-                curr.next = list2  # Add the smaller node (list2) to the merged list
-                list2 = list2.next  # Move the list2 pointer to the next node
+        dummy = ListNode()
+        curr = dummy
+        
+        while list1 and list2:
+            if list1.val > list2.val:
+                curr.next = list2
+                list2 = list2.next
+            
             else:
-                curr.next = list1  # Add the smaller node (list1) to the merged list
-                list1 = list1.next  # Move the list1 pointer to the next node
-            curr = curr.next  # Move the 'curr' pointer to the newly added node
-
-        curr.next = list1 if list1 else list2  # Append the remaining nodes from either list1 or list2
-        return dummy.next  # Return the next node after the dummy node (the actual merged list)
+                curr.next = list1
+                list1 = list1.next
+            curr = curr.next
+            
+        curr.next = list1 if list1 else list2
+        
+        return dummy.next
+            
+            
+        
