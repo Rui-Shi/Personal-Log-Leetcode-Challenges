@@ -13,11 +13,14 @@
 # Output: [-1]
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+from typing import List, Optional
+
+
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         
@@ -33,6 +36,9 @@ class Solution:
         root.right = self.buildTree(preorder[(1+split_index):], inorder[(split_index+1):])
         
         return root
+
+import scipy.stats as stats
+print(stats.t.cdf(-4, 15))
         
         
         
