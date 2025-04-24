@@ -62,4 +62,35 @@ class Solution:
                     bfs(r, c)
     
         return islands
+    
+# bfs:
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        dir = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        visited = {}
+        count = 0
+        nrow = len(grid)
+        ncol = len(grid[0])
+
+        def dfs_helper(r, c):
+            nonlocal visited
+
+            if grid[r][c] == "0":
+                return
+            else:
+                visited[(r, c)] = 1
+            for dr, dc in dir:
+                r_new = r + dr
+                c_new = c + dc
+                if 0<=r_new<nrow and 0<=c_new<ncol and (r_new, c_new) not in visited and grid[r_new][c_new] == "1":
+                    dfs_helper(r_new, c_new)
+
+
+        for i in range(nrow):
+            for j in range(ncol):
+                if grid[i][j] == "1" and (i, j) not in visited:
+                    count += 1
+                    dfs_helper(i, j)
+        return count
             
