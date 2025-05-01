@@ -46,70 +46,48 @@ class Solution:
         Returns:
             The minimum number of mutations required, or -1 if no such transformation exists.
         """
-
-        # --- Pre-checks and Setup ---
-
-        # 1. Trivial case: If start and end are the same, no mutations needed.
+        
         if startGene == endGene:
             return 0
-
-        # 2. Convert the bank list to a set for efficient O(1) average-time lookups.
-        #    The set will store all valid intermediate gene states.
+        
         bankSet = set(bank)
-
-        # 3. If the target endGene is not in the bank, it's impossible to reach
-        #    as a valid final state (unless startGene == endGene, handled above).
+        
         if endGene not in bankSet:
             return -1
-
-        # --- BFS Implementation ---
-
-        # 4. Initialize a queue for BFS. Store tuples of (gene_string, distance_from_start).
+        
         queue = collections.deque([(startGene, 0)])
-
-        # 5. Initialize a set to keep track of visited gene strings to avoid cycles
-        #    and redundant computations. Add the startGene as it's our starting point.
+        
         visited = {startGene}
-
-        # 6. Define the possible characters for mutation.
+        
         chars = ['A', 'C', 'G', 'T']
-        gene_length = len(startGene) # Should be 8 based on constraints
-
-        # 7. Start the BFS loop. Continue as long as there are genes to explore.
+        gene_length = len(startGene)
+        
         while queue:
-            # 8. Dequeue the next gene and its distance from the start.
             current_gene, distance = queue.popleft()
-
-            # 9. Try all possible single-character mutations for the current gene.
+            
             for i in range(gene_length):
                 original_char = current_gene[i]
-                # Iterate through each possible character ('A', 'C', 'G', 'T')
+                
                 for char in chars:
-                    # Skip if the character is the same as the original (not a mutation)
                     if char == original_char:
                         continue
-
-                    # Create the potential next gene string by changing one character
-                    # Converting to list for mutation is often easier than slicing/concatenating
-                    next_gene_list = list(current_gene)
-                    next_gene_list[i] = char
-                    next_gene_str = "".join(next_gene_list)
-
-                    # 10. Check if this mutated gene is the target endGene.
-                    if next_gene_str == endGene:
-                        # If yes, we've found the shortest path. Return the current distance + 1.
-                        return distance + 1
-
-                    # 11. Check if the mutated gene is valid (in the bank) and hasn't been visited yet.
-                    if next_gene_str in bankSet and next_gene_str not in visited:
+                    
+                    else:
+                        newGene_list = list(current_gene)
+                        newGene_list[i] = char
+                        newGene = "".join(newGene_list)
+                        
+                        if newGene == endGene:
+                            return distance + 1
+                        
+                        if newGene in bankSet and newGene not in visited:
                         # Mark it as visited.
-                        visited.add(next_gene_str)
+                            visited.add(newGene)
                         # Enqueue it with the updated distance.
-                        queue.append((next_gene_str, distance + 1))
-
-        # 12. If the queue becomes empty and we haven't found the endGene,
-        #     it means the endGene is unreachable from the startGene via the bank.
+                            queue.append((newGene, distance + 1))
+            
         return -1
+                    
 
 # Example Usage:
 sol = Solution()

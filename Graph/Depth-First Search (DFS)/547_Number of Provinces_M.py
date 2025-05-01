@@ -21,24 +21,21 @@
 
 from typing import List
 
-
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        visited = {}
+        visited = set()
         n = len(isConnected)
         res = 0
         
         def dfs_helper(i):
-            visited[i] = 1
+            visited.add(i)
             for j, value in enumerate(isConnected[i]):
-                if value == 1 and j != i and j not in visited:
-                    visited[j] = 1
+                if value == 1 and j not in visited:
                     dfs_helper(j)
-                    
+        
         for i in range(n):
             if i not in visited:
                 res += 1
-                
                 dfs_helper(i)
         
         return res

@@ -27,7 +27,7 @@ from typing import List
 
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        visited = {0:1}
+        visited = {0}
         
         keys = [rooms[0]]
         
@@ -36,7 +36,7 @@ class Solution:
             for i in key:
                 if i not in visited:
                     keys.append(rooms[i])
-                    visited[i] = 1
+                    visited.add(i)
         
         if len(visited) < len(rooms):
             return False
