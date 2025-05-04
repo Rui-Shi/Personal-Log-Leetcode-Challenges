@@ -64,28 +64,17 @@ nums=[0,0,1,1,1,2,2,3,3,4]
 s.removeDuplicates(nums)
 print(nums)
 
+import collections
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
     
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        # Dictionary to track the frequency of elements (not actually used for counting in the final solution)
-        d = {}
+        d = collections.defaultdict(int)
         
-        # Loop over the input list to build the dictionary
-        for i in nums:
-            if i in d:
-                d[i] += 1
-            else:
-                d[i] = 1
+        for num in nums:
+            d[num] += 1
         
-        # Overwrite the input list with the unique elements in their original order
-        # nums[:] = ... modifies the list in place, preserving its identity
-        nums[:] = list(d.keys())  # `d.keys()` gives the unique elements 
-
-        # Return the length of the list after removing duplicates
+        nums[:] = list(d.keys())
         return len(nums)
+            
     
 # Function 2 has a linear time complexity (O(n)), while Function 1 has a quadratic time complexity (O(n^2)) due to .pop() 

@@ -35,7 +35,16 @@
 
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        num = int(''.join(str(x) for x in digits)) # a generator expression, similar to list comprehension
-        num +=1
-        digits = [int(x) for x in str(num)]
-        return digits
+        n = len(digits)
+        
+        # Traverse the digits from the end to the beginning
+        for i in range(n - 1, -1, -1):
+            if digits[i] < 9:
+                digits[i] += 1
+                return digits
+            else:
+                digits[i] = 0
+        
+        # If we exit the loop, it means all digits were 9
+        # We need to add a new digit at the beginning
+        return [1] + digits
