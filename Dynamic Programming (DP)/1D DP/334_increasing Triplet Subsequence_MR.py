@@ -31,17 +31,15 @@ class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
         first = float('inf')
         second = float('inf')
-        for n in nums:
-            if n <= first:
-                first = n
-            elif n <= second:
-                second = n
+        
+        for num in nums:
+            if num <= first:
+                first = num
+            elif num <= second:
+                second = num
             else:
                 return True
+        
         return False
-
-s = Solution()
-nums = [1,2,3,4,5]
-print(s.increasingTriplet(nums))
 
 

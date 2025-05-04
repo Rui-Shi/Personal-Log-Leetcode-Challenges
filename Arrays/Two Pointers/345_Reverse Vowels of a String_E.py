@@ -22,24 +22,27 @@
 
 class Solution(object):
     def reverseVowels(self, s):
+        # Convert the input string to a character array.
         word = list(s)
-        start = 0
-        end = len(s) - 1
+        left = 0
+        right = len(s) - 1
         vowels = "aeiouAEIOU"
         
-        while start < end:
-            while start < end and vowels.find(word[start]) == -1:
-                start += 1
-            
-            while end < end and vowels.find(word[end]) == -1:
-                end -= 1
-            
-            word[start], word[end] = word[end], word[start]
-            
-            start += 1
-            end -= 1
-            
+        while left < right:
+            while left < right and word[left] not in vowels:
+                left += 1
+            while left < right and word[right] not in vowels:
+                right -= 1
+            if left < right:
+                word[left], word[right] = word[right], word[left]
+                left += 1
+                right -= 1
+        
         return ''.join(word)
+            
+            
+        
+        
             
             
                 
