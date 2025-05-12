@@ -40,22 +40,20 @@ class Solution:
                 '8': 'tuv',
                 '9': 'wxyz'}
         
-        temp = ['']
+        res = ['']
         
-        for i in range(n):
-            digit = digits[i]
+        for digit in digits:
             map = maps[digit]
-            
-            temp_next = []
-            
-            for str in temp:
+            res_next = []
+            for str in res:
                 for char in map:
-                    temp_next.append(str + char)
-            
-            temp[:] = temp_next
+                    res_next.append(str+char)
+        res[:] = res_next
         
-        return temp_next
+        return res_next
+                    
             
+              
                 
                 
             

@@ -32,46 +32,34 @@
 from typing import List
 
 class Solution:
-    """
-    Finds all valid combinations of k numbers that sum up to n, using numbers 1-9
-    at most once.
-    """
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        """
-        Args:
-            k: The required number of elements in each combination.
-            n: The required sum of elements in each combination.
 
-        Returns:
-            A list of all valid combinations (each combination is a list of integers).
-        """
         results = []  # This will store all valid combinations found
 
         def backtrack(start_num, count, current_sum, current_combination):
-            if current_sum > n:
-                return
+            nonlocal results
             
-            if count == k:
-                if current_sum == n:
-                    results.append(list(current_combination))
-                
+            if count == k and current_sum == n:
+                results.append(current_combination[:])
                 return
             
             if count > k or start_num > 9:
                 return
             
+            if current_sum > n:
+                return
+            
             for i in range(start_num, 10):
-                
                 if current_sum + i > n:
                     break
                 
                 current_combination.append(i)
                 
                 backtrack(i + 1, count + 1, current_sum + i, current_combination)
-                
-                # Unchoose (Backtrack): Remove the number 'i' before trying the next number in the loop
-                # This allows exploration of paths where 'i' is *not* included at this step.
+            
+                # backtracking
                 current_combination.pop()
+            
                 
         backtrack(start_num=1, count=0, current_sum=0, current_combination=[])
         
@@ -109,3 +97,4 @@ output4 = solver.combinationSum3(k4, n4)
 print(f"\nInput: k = {k4}, n = {n4}")
 print(f"Output: {output4}")
 # Expected: [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
+                    

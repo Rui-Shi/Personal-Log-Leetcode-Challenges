@@ -23,28 +23,18 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        """
-        Finds the length of the longest substring without repeating characters.
-
-        Args:
-            s: The input string.
-
-        Returns:
-            The length of the longest substring without repeating characters.
-        """
 
         left = 0  # Left pointer of the sliding window
         max_length = 0  # Stores the maximum length found so far
         char_set = set()  # Stores the characters in the current window (using a set for fast lookups)
 
-        for right in len(s):
+        for right in range(len(s)):
             while s[right] in char_set:
+                char_set.remove(s[left])
                 left += 1
-                char_set.remove(s[right])
             
-            max_length = max(max_length, right - left + 1)
             char_set.add(s[right])
-        
+            max_length = max(max_length, len(char_set))
         return max_length
             
             

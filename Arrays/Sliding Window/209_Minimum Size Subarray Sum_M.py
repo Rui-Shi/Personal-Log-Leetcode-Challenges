@@ -30,14 +30,14 @@ class Solution:
         current_sum = 0
 
         for right in range(len(nums)):
-            current_sum += nums[right]  # Expand the window
-
-            while current_sum >= target:  # Shrink the window if possible
-                min_len = min(min_len, right - left + 1)  # Update min_len
-                current_sum -= nums[left]  # Remove the leftmost element
-                left += 1  # Move the left pointer
-
+            current_sum += nums[right]
+            while current_sum > target:
+                min_len = min(min_len, right - left + 1)
+                current_sum -= nums[left]
+                left += 1
+        
         return min_len if min_len!= float('inf') else 0  # Handle the case where no subarray is found
+                
             
         
         

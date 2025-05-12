@@ -34,31 +34,31 @@
 # check.  Checking for membership in a list is an O(n) operation, and you're doing 
 # this inside a nested loop, leading to a worst-case time complexity of O(n^3).
 
+# use hashmap
+from typing import List
+
+from typing import List
+
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        result = []
-        nums.sort()  # Sort the input array (O(n log n))
-        
-        for i in range(len(nums)-2):
-            if i > 0 and nums[i] == nums[i - 1]:  # Skip duplicate starting numbers
-                continue # jump to the next cycle
-            
-            target = 0 - nums[i]
-            num_map = {}
-            
-            for j in range(i+1, len(nums)):
-                if j > i + 1 and nums[j] == nums[j - 1]: # Skip duplicate starting numbers
-                    continue
-                
-                curr = nums[j]
-                x = target - curr
-                if x in num_map:
-                    list_temp = [nums[i], x, nums[j]]
-                    list_temp.sort()
-                    result.append(list_temp)
-                else:
-                    num_map[curr] = j
-        return result
+  def threeSum(self, nums: List[int]) -> List[List[int]]:
+    result = []  # Stores unique triplets.
+    
+    seen_trips = {}
+    
+    for i in range(len(nums)-2):
+        num1 = nums[i]
+        target = 0 - num1
+        map = {}
+        for j in range(i + 1, len(nums)):
+            num2 = nums[j]
+            compli = target - num2
+            if compli in map:
+                trips = tuple(sorted([num1, num2, compli]))
+                if trips not in seen_trips:
+                    seen_trips[trips] = True
+                    result.append([num1, num2, compli])
+            map[num2] = True
+    return result
 
 
 # better solution O(nlogn):
