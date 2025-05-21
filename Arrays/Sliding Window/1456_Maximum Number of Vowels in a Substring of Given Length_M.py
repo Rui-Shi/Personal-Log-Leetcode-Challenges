@@ -41,7 +41,7 @@ class Solution:
         res = count
             
         for i in range(1, len(s) - k + 1):
-            count = count - (s[i-1] in vowel) + (s[i + k -1] in vowel)
+            count = count - (s[i-1] in vowel) + (s[i + k - 1] in vowel)
 
             if count > res:
                 res = count

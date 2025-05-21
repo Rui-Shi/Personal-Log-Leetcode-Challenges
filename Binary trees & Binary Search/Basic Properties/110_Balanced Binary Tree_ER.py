@@ -49,18 +49,17 @@ class Solution:  # Use 'class Solution:' instead of 'def Solution:'
         def check(root):
             if not root:
                 return 0, True
-
-            left_height, left_balanced = check(root.left)
-            right_height, right_balanced = check(root.right)
-
-            if not left_balanced or not right_balanced:
+            
+            l_height, l_balanced = check(root.left)
+            r_height, r_balanced = check(root.right)
+            
+            if not l_balanced or not r_balanced:
                 return -1, False
-
-            if abs(left_height - right_height) > 1:
+            
+            if abs(l_height - r_height) > 1:
                 return -1, False
-
-            return max(left_height, right_height) + 1, True
-
+            
+            return 1 + max(l_height, r_height), True
         return check(root)[1]  # Return the second element of the tuple (is_balanced)
 
 

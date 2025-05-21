@@ -43,6 +43,26 @@ class Solution:
 s = Solution()
 nums = [1,1,0,0,1,0,1,0,0,1]
 print(s.longestSubarray(nums))
+
+# My solution, better to understand.
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        k = 1
+        n = len(nums)
+        
+        l = 0
+        res = 0
+        
+        for r in range(n):
+            if nums[r] == 0:
+                k -= 1
+            
+            while k < 0:
+                if nums[l] == 0:
+                    k += 1
+                l += 1
+            res = max(res, r - l)
+        return res
                 
         
         

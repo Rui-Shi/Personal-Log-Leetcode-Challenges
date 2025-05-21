@@ -43,8 +43,11 @@ class Solution:
         
         if not root:
             return False
-        if targetSum == root.val and not root.left and not root.right:
+        
+        elif root.val == targetSum and not root.left and not root.right:
             return True
+        
         else:
-            targetSum_sub = targetSum - root.val
-            return self.hasPathSum(root.left, targetSum_sub) or self.hasPathSum(root.right, targetSum_sub)
+            targeSum = targetSum - root.val
+            return self.haspathSum(root.left, targetSum) or self.haspathSum(root.right, targetSum)
+        

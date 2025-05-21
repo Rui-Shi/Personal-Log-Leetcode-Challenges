@@ -49,30 +49,44 @@ class Solution:
     on the same level. If there is no right neighbor, it should be None.
     """
     def connect(self, root: 'Node') -> 'Node':
-        """
-        Connects nodes at the same level using BFS.
+        if not root:
+            return root
+        
+        current_level = [root]
+        
+        while current_level:
+            next_level = []
+            for i, node in enumerate(current_level):
+                if i == len(current_level) - 1:
+                    pass
+                else:
+                    node.next = current_level[i + 1]
+                
+                if node.left:
+                    next_level.append(node.left)
+                    
+                if node.right:
+                    next_level.append(node.right)
+                    
+            current_level[:] = next_level
+                
+        return root
 
-        Args:
-            root: The root node of the binary tree.
 
-        Returns:
-            The root node of the modified tree with 'next' pointers populated.
-        """
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        
         if not root:
             return None # Handle empty tree case
 
-        # Use a deque (double-ended queue) for efficient BFS
         queue = collections.deque([root])
 
         while queue:
-            # Number of nodes at the current level
             level_size = len(queue)
-            # Keep track of the previous node processed in this level
             prev_node = None
 
             # Process all nodes at the current level
             for i in range(level_size):
-                # Get the next node from the front of the queue
                 current_node = queue.popleft()
 
                 # Link the previous node's 'next' to the current node
@@ -88,10 +102,11 @@ class Solution:
                     queue.append(current_node.left)
                 if current_node.right:
                     queue.append(current_node.right)
-
-            # After the loop, the 'prev_node' (which was the rightmost node
-            # of the level) will have its 'next' pointer implicitly set to None
-            # (its initial value), which is the desired behavior.
-
         return root
+                    
+                    
+                  
+        
+        
+        
         

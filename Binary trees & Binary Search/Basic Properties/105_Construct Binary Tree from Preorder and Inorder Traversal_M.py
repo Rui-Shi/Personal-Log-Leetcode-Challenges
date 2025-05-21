@@ -36,9 +36,6 @@ class Solution:
         root.right = self.buildTree(preorder[(1+split_index):], inorder[(split_index+1):])
         
         return root
-
-import scipy.stats as stats
-print(stats.t.cdf(-4, 15))
         
         
         

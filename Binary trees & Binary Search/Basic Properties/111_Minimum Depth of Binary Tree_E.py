@@ -31,7 +31,8 @@ class TreeNode:
 
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
-        if root is None: return 0
+        if root is None: 
+            return 0
         
         # Initialize the depth of two subtrees...
         left_depth = self.minDepth(root.left)

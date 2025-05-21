@@ -29,18 +29,18 @@ class TreeNode:
 class Solution:
     def isMirror(self, left: Optional[TreeNode], right: Optional[TreeNode]) -> bool:
         # Check if either the left or right subtree is empty
-        if not left or not right:
-            # If both left and right subtrees are empty, they are mirrors of each other
-            if not left and not right: return True
-            # Otherwise, if only one of them is empty, they are not mirrors
-            else: return False
-        # If both left and right subtrees are non-empty
+        if not left and not right:
+            return True
+        
+        elif not left and right or left and not right:
+            return False
+        
         else:
-            # Check if the values of the current nodes are equal AND
-            # recursively check if the left subtree of the left node is a mirror of the right subtree of the right node AND
-            # recursively check if the right subtree of the left node is a mirror of the left subtree of the right node
-            return left.val == right.val and self.isMirror(left.left, right.right) and self.isMirror(left.right, right.left)
-
+            if left.val != right.val:
+                return False
+            else:
+                return self.isMirror(left.left, right.right) and self.isMirror(left.right, right.left)
+       
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         # Check if the tree is symmetric by calling the isMirror function on the left and right subtrees of the root
         return self.isMirror(root.left, root.right)

@@ -43,14 +43,15 @@ class Solution:
         res = ['']
         
         for digit in digits:
-            map = maps[digit]
             res_next = []
+            letters = maps[digit]
             for str in res:
-                for char in map:
-                    res_next.append(str+char)
-        res[:] = res_next
+                for char in letters:
+                    res_next.append(str + char)
+            res[:] = res_next
         
         return res_next
+                    
                     
             
               
