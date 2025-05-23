@@ -49,21 +49,25 @@ class TreeNode:
         self.right = right
 class Solution:
     def inorderTraversal(self, node: Optional[TreeNode]) -> List[int]:
-        """
-        Performs an inorder traversal of a binary tree.
-
-        Args:
-            root: The root of the binary tree.
-
-        Returns:
-            A list containing the inorder traversal of the tree's node values.
-        """
+        
+        if not node:
+            return []
 
         result = []  # Initialize the list to store the inorder traversal
-        if node:
-            result = result + self.inorderTraversal(node.left)
-            result = result + [node.val]
-            result = result + self.inorderTraversal(node.right)
+        result = result + self.inorderTraversal(node.left)
+        result = result + [node.val]
+        result = result + self.inorderTraversal(node.right)
 
         return result  # Return the list containing the inorder traversal
+
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        
+        if root:
+            res += self.inorderTraversal(root.left)
+            res += [root.val]
+            res += self.inorderTraversal(root.right)
+        
+        return res
         

@@ -90,4 +90,38 @@ class Solution:
         # Return the final accumulated count.
         return self.total_paths
         
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        # Instance variable to store the total count of valid paths.
+        total_paths = 0
+        pre_fix = {0: 1}
+        
+        def dfs_helper(root, current_sum):
+            nonlocal total_paths
+            
+            if not root:
+                return
+            
+            current_sum += root.val
+            complement = current_sum - targetSum
+            
+            total_paths += pre_fix.get(complement, 0)
+            
+            pre_fix[current_sum] = pre_fix.get(current_sum, 0) + 1
+            
+            dfs_helper(root.left, current_sum)
+            dfs_helper(root.right, current_sum)
+            
+            pre_fix[current_sum] -= 1
+            if pre_fix[current_sum] == 0: del pre_fix[current_sum]
+        
+        dfs_helper(root, 0)
+        return total_paths
+            
+            
+        
+        
+            
+            
+            
             

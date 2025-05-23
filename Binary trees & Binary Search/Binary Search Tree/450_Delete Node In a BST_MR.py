@@ -167,4 +167,8 @@ root3 = None
 print(f"\nExample 3 - Initial Tree: {treeToList(root3)}")
 new_root3 = solver.deleteNode(root3, 0)
 print(f"Example 3 - Tree after deleting 0: {treeToList(new_root3)}") # Expected: []
-        
+
+
+
+class Solution:
+    def findMin(self, node: TreeNode) -> TreeNode:

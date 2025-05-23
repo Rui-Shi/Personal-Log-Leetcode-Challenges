@@ -55,3 +55,14 @@ class Solution:
             result = result + self.postorderTraversal(root.right)[::-1]  # Recursively traverse the left subtree and add its result
             result = result + self.postorderTraversal(root.left)[::-1]  # Recursively traverse the right subtree and add its result
         return result[::-1]  # Return the final result list
+
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        
+        if root:
+            res += self.postorderTraversal(root.left)
+            res += self.postorderTraversal(root.right)
+            res += [root.val]
+        
+        return res

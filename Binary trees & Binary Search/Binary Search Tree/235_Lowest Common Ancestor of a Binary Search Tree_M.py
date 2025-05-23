@@ -30,17 +30,6 @@ class TreeNode:
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        """
-        Finds the lowest common ancestor (LCA) of two nodes in a BST.
-
-        Args:
-            root: The root node of the BST.
-            p: The first node.
-            q: The second node.
-
-        Returns:
-            The LCA node.
-        """
 
         # Make sure p's value is smaller than q's value for easier comparison
         if p.val > q.val:

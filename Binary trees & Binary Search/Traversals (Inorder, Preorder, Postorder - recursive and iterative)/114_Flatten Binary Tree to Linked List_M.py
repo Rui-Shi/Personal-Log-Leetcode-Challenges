@@ -60,4 +60,47 @@ class Solution:
         return root
         
         
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        
+        def preorder_helper(root):
+            
+            if not root:
+                return []
+            
+            val_list = []
+            
+            val_list.append(root.val)
+            val_list += preorder_helper(root.left)
+            val_list += preorder_helper(root.right)
+        
+            return val_list
+        
+        val_list = preorder_helper(root)
+        
+        dummy = TreeNode()
+        cur = dummy
+        cur.right = root
+        
+        for val in val_list:
+            cur = cur.right
+            cur.val = val
+            cur.left = None
+            cur.right = TreeNode()
+        
+        cur.right = None
+        
+        return root                      
+            
+            
+            
+            
+            
+        
+        
+        
+        
         

@@ -25,30 +25,36 @@ class Solution:
 
 # x**2 represent square in Python
 
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        """
+        Calculates the square root of a non-negative integer x, rounded down to the nearest integer.
 
-def mySqrt(x: int) -> int:
-    """
-    Calculates the square root of a non-negative integer x, rounded down to the nearest integer.
+        Args:
+            x: The non-negative integer.
 
-    Args:
-        x: The non-negative integer.
+        Returns:
+            The square root of x rounded down to the nearest integer.
+        """
 
-    Returns:
-        The square root of x rounded down to the nearest integer.
-    """
+        if x == 0:
+            return 0
 
-    if x == 0:
-        return 0
+        left, right = 1, x  # Initialize search range
 
-    left, right = 1, x  # Initialize search range
-
-    while left <= right:
-        mid = left + (right - left) // 2  # Prevent potential overflow
-
-        if mid * mid <= x:  # Check if mid*mid is less than or equal to x
-            result = mid   # If it is, store mid as a potential result
-            left = mid+1 # Try larger values for the square root
+        while left < right:
+            mid = (left + right) // 2
+            
+            if mid ** 2 > x:
+                right = mid
+            
+            elif mid ** 2 < x:
+                left = mid + 1
+            
+            else:
+                return mid
+            
+        if left ** 2 == x:
+            return left
         else:
-            right = mid-1# Try smaller values for the square root
-
-    return result  # Return the final result (rounded down)
+            return left - 1

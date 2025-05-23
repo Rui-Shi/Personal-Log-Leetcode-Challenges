@@ -24,18 +24,7 @@ import math # Not strictly needed for the logic, but good practice if extending
 
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
-        """
-        Finds a peak element in a 0-indexed integer array nums using binary search.
-        A peak element is strictly greater than its neighbors.
-        Assumes nums[-1] = nums[n] = -infinity.
-        Runs in O(log n) time.
-
-        Args:
-            nums: The input list of integers.
-
-        Returns:
-            The index of any peak element.
-        """
+        
         n = len(nums)
         low = 0
         high = n - 1
@@ -45,12 +34,12 @@ class Solution:
             # Calculate mid point, preventing potential overflow
             mid = low + (high - low) // 2
 
-            # Compare middle element with its right neighbor
             # If nums[mid] is less than nums[mid + 1], it means the slope is
             # increasing, so a peak *must* exist on the right side (mid+1...high).
             if nums[mid] < nums[mid + 1]:
                 low = mid + 1
-            # Otherwise (nums[mid] >= nums[mid + 1]), the slope is
+                
+            # Otherwise the slope is
             # non-increasing (decreasing or flat). This means nums[mid]
             # could be a peak itself, or a peak exists to its left.
             # We narrow the search space to the left side including mid (low...mid).
@@ -61,10 +50,24 @@ class Solution:
         # This index is guaranteed to be a peak element based on the comparisons made.
         return low # or return high, as low == high at this point
 
-# Example usage (outside the class definition for testing):
-sol = Solution()
-nums1 = [2, 2, 2, 1, 2]
-print(f"Input: {nums1}, Output: {sol.findPeakElement(nums1)}") # Output: 2
-#
-# nums2 = [1, 2, 1, 3, 5, 6, 4]
-# print(f"Input: {nums2}, Output: {sol.findPeakElement(nums2)}") # Output: 5 (or 1)
+
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        n = len(nums)
+        low = 0
+        high = n - 1
+        
+        while low < high:
+            mid = (low + high) // 2
+            
+            if nums[mid] < nums[mid + 1]:
+                low = mid + 1
+            
+            else:
+                high = mid
+        
+        return low
+
+s = Solution()
+nums = [1, 2, 1, 3, 4, 5, 6]
+print(s.findPeakElement(nums))

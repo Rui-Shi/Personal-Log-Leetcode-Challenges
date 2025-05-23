@@ -70,4 +70,24 @@ class Solution:
             # If both are None, propagate None up.
             return left_result or right_result
         
+            # This line effectively passes up the recursion either the found TreeNode (p, q, or a deeper LCA) 
+            # if it was located in only one of the subtrees, or None if neither subtree contained such a node.
+
+class Solution:
+    def lowestCommonAncestor(self,
+                           root: Optional[TreeNode],
+                           p: TreeNode,
+                           q: TreeNode
+                          ) -> Optional[TreeNode]:
         
+        if root in (None, p, q):
+            return root
+        
+        left_result = self.lowestCommonAncestor(root.left, p, q)
+        right_result = self.lowestCommonAncestor(root.right, p, q)
+        
+        if left_result and right_result:
+            return root
+        
+        else:
+            return left_result or right_result

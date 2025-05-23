@@ -22,13 +22,21 @@ class Solution:
         left = 0
         right = len(nums)
         
-        if nums[left]>=target: return 0 # if the target is small or equal to the smallest number of the list
-
-        while right > left + 1:
-            mid = (right+left)//2
-            if nums[mid]>=target: right = mid
-            else: left = mid
-        return right
+        if nums[left] >= target: 
+            return 0 # if the target is small or equal to the smallest number of the list
+        
+        while left < right:
+            mid = (left + right) // 2
+            
+            if nums[mid] >= target:
+                right = mid
+            
+            else:
+                left = mid + 1
+            
+        return left
+        
+        
             
             
             

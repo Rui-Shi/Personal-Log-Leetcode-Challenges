@@ -39,7 +39,6 @@ class TreeNode:
 class Solution:
     def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
         def DFS(root, leaves = []):
-            
             if not root:
                 return
             
@@ -49,16 +48,13 @@ class Solution:
             
             DFS(root.left, leaves)
             DFS(root.right, leaves)
+        
         leaves1 = []
         leaves2 = []
         DFS(root1, leaves1)
-        DFS(root2, leaves2)
+        DFS(root1, leaves2)
         
-        if leaves1 == leaves2:
-            return True
-        else:
-            return False
-        
+        return leaves1 == leaves2
         
 # Another way, similar efficiency 
 

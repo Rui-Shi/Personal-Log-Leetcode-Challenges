@@ -78,6 +78,40 @@ class Solution:
         levelTraversal([root])  # Start the level-order traversal from the root node.
 
         return res  # Return the level-order traversal result.
+
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
+        res = []
+        
+        def dfs_helper(node_list):
+            nonlocal res
+            
+            if not node_list:
+                return []
+            
+            cur_level_nodeval = []
+            node_list_next = []
+            
+            for node in node_list:
+                if node:
+                    cur_level_nodeval.append(node.val)
+                
+                    if node.left:
+                        node_list_next.append(node.left)
+                
+                    if node.right:
+                        node_list_next.append(node.right)
+            
+            res.append(list(cur_level_nodeval))
+            dfs_helper(node_list_next)
+        
+        dfs_helper([root])
+        
+        return res
+            
+            
             
                 
                             
