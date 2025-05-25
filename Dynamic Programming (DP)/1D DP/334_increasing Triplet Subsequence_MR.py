@@ -24,7 +24,7 @@
 # 1 <= nums.length <= 5 * 105
 # -231 <= nums[i] <= 231 - 1
 
-# O(n^3)
+# O(n)
 from typing import List
 
 class Solution:

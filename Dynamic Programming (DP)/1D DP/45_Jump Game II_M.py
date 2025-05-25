@@ -26,15 +26,6 @@
 # It's guaranteed that you can reach nums[n - 1].
 
 def jump(nums):
-    """
-    Calculates the minimum number of jumps to reach the last index of an array.
-
-    Args:
-        nums: An integer array representing jump lengths.
-
-    Returns:
-        The minimum number of jumps.
-    """
 
     n = len(nums)
     if n <= 1:
@@ -55,5 +46,26 @@ def jump(nums):
 # Test case
 nums = [2, 2, 0, 1, 4]
 result = jump(nums)
-print(result) 
+print(result)
+
+class Solution:
+    def jump(self, nums):
+        n = len(nums)
+        if n <= 1:
+            return 0
+        
+        jumps = 0
+        current_reach = 0
+        farthest_reach = 0
+        
+        for i in range(n - 1):
+            farthest_reach = max(farthest_reach, i + nums[i])
+            if current_reach == i:
+                jumps += 1
+                current_reach = farthest_reach
+            if current_reach >= n - 1:
+                return jumps
+            
+        return jumps
+    
         
