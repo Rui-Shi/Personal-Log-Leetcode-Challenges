@@ -40,6 +40,6 @@ class Solution:
                     newNum = Pas_tri[-1][j]+Pas_tri[-1][j+1]
                     newRow.append(newNum)
                 newRow.append(1)
-                Pas_tri.append(newRow)
+                Pas_tri.append(list(newRow))
                 newRow = Pas_tri[-1]
         return newRow
