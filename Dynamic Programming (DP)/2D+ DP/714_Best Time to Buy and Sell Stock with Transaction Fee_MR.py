@@ -62,5 +62,20 @@ class Solution:
 
         # Final answer must be in the 'cash' state (profit realized)
         return cash
+
+
+class Solution:
+    def maxProfit(self, prices: list[int], fee: int) -> int:
+        n = len(prices)
         
+        if n < 2:
+            return 0
         
+        cash = -prices[0]
+        hold = 0
+        
+        for i in range(1, n):
+            hold = max(hold, cash - prices[i] - fee)
+            cash = max(cash, hold + prices[i] - fee)
+        
+        return cash

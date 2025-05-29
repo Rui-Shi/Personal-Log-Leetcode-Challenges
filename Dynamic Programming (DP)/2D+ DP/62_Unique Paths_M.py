@@ -21,6 +21,7 @@
 # 3. Down -> Right -> Down
 
 # recursive call
+# Time complexity is O(2^(m+n)): there are m+n-2 steps, each step results in 2 recursive calls of the functions.
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         if m == 1 or n == 1:
@@ -29,18 +30,19 @@ class Solution:
         return self.uniquePaths(m-1, n) + self.uniquePaths(m, n-1)
     
 # dp
+# Time complexity: O(m+n)
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         dp = [[0 for _ in range(m)] for _ in range(n)] # create a n*m matrix for dp # create a m*n matrix for dp
-        
-        for i in range(m):
-            for j in range(n):
+        print(dp)
+        for i in range(n):
+            for j in range(m):
                 if i == 0 or j == 0:
                     dp[i][j] = 1
                 else:
                     dp[i][j] = dp[i-1][j] + dp[i][j-1]
         
-        return dp[m-1][n-1]
+        return dp[n-1][m-1]
                     
                 
         
