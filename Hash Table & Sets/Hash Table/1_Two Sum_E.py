@@ -36,5 +36,18 @@ class Solution:
                 return [map[target_temp], i]
             else:
                 map[nums[i]] = i
+
+
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        map = {}
+        for i in range(len(nums)):
+            target_temp = target - nums[i]
+            if target_temp in map:
+                return [map[target_temp], i]
+            else:
+                map[nums[i]] = i
+                
+                
                 
             

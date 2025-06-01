@@ -42,3 +42,41 @@ class Solution:
                     bfs_helper(r, c)
         
         return area_max
+
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        area_max = 0
+        visited = set()
+        
+        dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        
+        def bfs_helper(r, c):
+            nonlocal area_max, visited
+            region = []
+            q = deque([(r, c)])
+            visited.add((r, c))
+            
+            while q:
+                r_cur, c_cur = q.popleft()
+                region.append((c_cur, r_cur))
+                
+                for a, b in dirs:
+                    r_new = r_cur + a
+                    c_new = c_cur + b
+                    
+                    if 0 <= r_new < len(grid) and \
+                        0 <= c_new < len(grid[0]) and \
+                            grid[r_new][c_new] == 1 and \
+                                (r_new, c_new) not in visited:
+                                    q.append((r_new, c_new))  
+                                    visited.add((r_new, c_new))
+                                                   
+            area_max = max(area_max, len(region))
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1 and (i, j) not in visited:
+                    bfs_helper(i, j)
+        
+        return area_max

@@ -88,3 +88,35 @@ class Solution:
                     return False # Return False, indicating the graph is not bipartite.
 
         return True # If all components are checked and no conflict is found, it means the graph is bipartite.
+    
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        color = {}
+        
+        def dfs_helper(node):
+            nonlocal color
+            
+            for neigh in graph[node]:
+                if neigh in color:
+                    if color[neigh] == color[node]:
+                        return False
+                else:
+                    color[neigh] = 1 - color[node]
+                    if not dfs_helper(neigh):
+                        return False
+            return True
+                                
+                
+        for i in range(len(graph)): # Iterate through all nodes in the graph, This loop is important to handle disconnected graphs.
+            if i not in color:
+                color[i] = 0
+                if not dfs_helper(i):
+                    return False
+        return True
+                            
+                
+                
+                
+                
+            
+        
