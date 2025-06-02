@@ -46,6 +46,8 @@ class Solution:
 
         while n % 5 == 0:  # While n is divisible by 5
             n //= 5       # Integer division by 5
+        
+        return n == 1
 
         # If n is 1 after removing all factors of 2, 3, and 5, it'
 # the fundamental theorem of arithmetic: every integer greater than 1 can be uniquely expressed as a product of prime numbers

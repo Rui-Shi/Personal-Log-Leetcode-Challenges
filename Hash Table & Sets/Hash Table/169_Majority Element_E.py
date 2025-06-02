@@ -24,6 +24,8 @@
 # Follow-up: Could you solve the problem in linear time and in O(1) space?
 
 
+from typing import List
+
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         bound = len(nums)//2
@@ -33,16 +35,17 @@ class Solution:
                 dict[num] += 1
             else:
                 dict[num] = 1
-        majority_num = 0
-        majority_count = 0
+        
         for num, count in dict.items():
-            if count>majority_count:
-                majority_num = num
-                majority_count = count
-        return majority_num
+            if count > bound:
+                return num
 
 # Solution 2: much more effienent
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         nums.sort()
         return nums[len(nums)// 2]
+    
+s = Solution()
+test_case = [1, 2, 3, 4, 4]
+print(s.majorityElement(test_case))

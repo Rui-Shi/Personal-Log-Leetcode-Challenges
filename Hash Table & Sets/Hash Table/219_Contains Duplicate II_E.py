@@ -35,11 +35,11 @@ class Solution:
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
         seen = {}
-
-        for i, val in enumerate(nums):
-            if val in seen and i - seen[val] <= k:
+       
+        for i, num in enumerate(nums):
+            if num in seen and i - seen[num] <= k:
                 return True
             else:
-                seen[val] = i
-        
-        return False
+                seen[num] = i
+        return False 
+           

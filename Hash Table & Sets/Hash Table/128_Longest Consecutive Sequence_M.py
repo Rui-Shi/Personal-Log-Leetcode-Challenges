@@ -48,6 +48,39 @@ class Solution:
             k = k_temp if k_temp > k else k
         
         return k
-    
+
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        num_set = set(nums)
+        num_map = {}
+        
+        res = 0
+        
+        for num in nums:
+            res_temp = 1
+            if num in num_map:
+                continue
+            
+            num_map[num] = 0
+            
+            num_forward = num + 1
+            num_backward = num - 1
+            
+            while num_forward in num_set:
+                res_temp += 1
+                num_map[num_forward] = 0
+                num_forward += 1
+            
+            while num_backward in num_set:
+                res_temp += 1
+                num_map[num_backward] = 0
+                num_backward += 1
+            
+            res = max(res, res_temp)
+        
+        return res
+            
+        
         
         

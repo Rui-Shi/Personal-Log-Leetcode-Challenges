@@ -66,4 +66,16 @@ class Solution:
         # We convert the dictionary's values (which are a collection of lists) to a list of lists.
         return list(anagrams.values())
             
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        map = {}
+        for str in strs:
+            str_sorted = ''.sorted(str)
+            
+            if str_sorted in map:
+                map[str_sorted].append(str)
+            
+            else:
+                map[str_sorted] = [str]
         
+        return list(map.values())
