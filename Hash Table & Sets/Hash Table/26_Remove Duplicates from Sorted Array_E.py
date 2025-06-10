@@ -51,10 +51,11 @@ class Solution:
             return k
         k = 1
         i = 1
-        while i<= len(nums)-1:
-            if nums[i]==nums[i-1]:
-                nums.pop(i)
+        while i <= len(nums)-1:
+            if nums[i] == nums[i-1]:
+                i += 1
             else:
+                nums[k] = nums[i]
                 k += 1
                 i += 1
         return k

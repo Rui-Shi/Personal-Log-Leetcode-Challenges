@@ -42,4 +42,25 @@ class Solution:
         for j in col_zero:
             for i in range(rows):
                 matrix[i][j] = 0
-                    
+
+class Solution:
+    def setZeroes(self, matrix: list[list[int]]) -> None:
+        row_zero = set()
+        col_zero = set()
+        
+        nr = len(matrix)
+        nc = len(matrix[0])
+        
+        for i in range(nr):
+            for j in range(nc):
+                row_zero.add(i)
+                col_zero.add(j)
+                
+        for i in row_zero:
+            matrix[i] = [0] * nr
+        
+        for j in col_zero:
+            for i in range(nr):
+                matrix[i][j] = 0
+        
+                

@@ -33,7 +33,7 @@
 # 1 <= nums.length <= 105
 # -109 <= nums[i] <= 109
 
-# O(n), but with two loops
+# O(n)
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         dict = {}
@@ -44,7 +44,7 @@ class Solution:
                 return True
         return False
     
-# another solution using set(), much faster, O(n), with only one loop
+# another solution using set()
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         hm = set()

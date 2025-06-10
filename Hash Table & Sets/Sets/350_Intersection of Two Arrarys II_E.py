@@ -30,3 +30,16 @@ class Solution:
             if num in nums2_counts:
                 res += min(nums1_counts[num], nums2_counts[num])*[num]
         return res
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1_count = Counter(nums1)
+        nums2_count = Counter(nums2)
+        
+        res = []
+        for num in nums1_count:
+            if num in nums2_count:
+                res += min(nums1_count[num], nums2_count[num])*[num]
+            
+        
+        
