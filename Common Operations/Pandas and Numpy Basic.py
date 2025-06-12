@@ -190,14 +190,14 @@ vstacked = np.vstack((arr_comb1, arr_comb2))
 #        [3, 4],
 #        [5, 6],
 #        [7, 8]])
-concatenated_axis0 = np.concatenate((arr_comb1, arr_comb2), axis=0) # Equivalent
+concatenated_axis0 = np.concatenate((arr_comb1, arr_comb2), axis=0) # Equivalent, concat along row
 
 # Concatenate along columns (axis=1)
 hstacked = np.hstack((arr_comb1, arr_comb2))
 # hstacked:
 # array([[1, 2, 5, 6],
 #        [3, 4, 7, 8]])
-concatenated_axis1 = np.concatenate((arr_comb1, arr_comb2), axis=1) # Equivalent
+concatenated_axis1 = np.concatenate((arr_comb1, arr_comb2), axis=1) # Equivalent, concat along col
 
 
 # --- Pandas Common Operations ---
@@ -375,6 +375,7 @@ df_dropped_cols = df_inspect.dropna(axis=1) # Returns DataFrame with columns con
 # Fill NaN values with a specific value (e.g., 0 or the mean)
 mean_colD = df_inspect['colD'].mean() # Calculate mean of 'colD' ignoring NaNs
 df_filled = df_inspect.fillna(value={'colD': mean_colD}) # Fill only NaNs in colD with calculated mean
+# The dictionary {'colD': mean_colD} specifies that you only want to fill values in the column named 'colD'.
 
 # Rename columns
 df_renamed = df_inspect.rename(columns={'colA': 'Alpha', 'colB': 'Beta'}) # Returns DataFrame with 'colA'/'colB' renamed
