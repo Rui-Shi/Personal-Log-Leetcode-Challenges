@@ -68,7 +68,7 @@ class Solution:
                 if node.right:
                     next_level.append(node.right)
                     
-            current_level[:] = next_level 
+            current_level[:] = next_level
                 
         return root
 
