@@ -77,18 +77,18 @@ class Solution:
             if cur1:
                 cur_sum += cur1.val
                 cur1 = cur1.next
-            
+                
             if cur2:
                 cur_sum += cur2.val
                 cur2 = cur2.next
-                
+            
             num = cur_sum % 10
             carry = cur_sum // 10
             
             dummy.next = ListNode(num)
             dummy = dummy.next
-        
         return res.next
+            
                 
             
             

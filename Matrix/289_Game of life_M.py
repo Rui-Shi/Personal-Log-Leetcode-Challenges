@@ -105,4 +105,42 @@ class Solution:
                 # A cell that was dead and is now reviving becomes live.
                 elif board[r][c] == 2:
                     board[r][c] = 1
+
+from typing import List
+
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
         
+        nrow = len(board)
+        ncol = len(board[0])
+        
+        def neighbor_count(r, c):
+            count = 0
+            # Iterate through all 8 neighbors and the cell itself
+            for i in range(r - 1, r + 2):
+                for j in range(c - 1, c + 2):
+                    # Check for boundary conditions AND ensure it's not the cell itself
+                    if i >= 0 and i < nrow and j >= 0 and j < ncol and (i, j) != (r, c):
+                        if board[i][j] == 1:
+                            count += 1
+            return count
+
+        change_grid = [[0 for _ in range(ncol)] for _ in range(nrow)]
+        
+        for i in range(nrow):
+            for j in range(ncol):
+                nei_count = neighbor_count(i, j)
+                
+                # Rule 4: A dead cell with exactly three live neighbours becomes a live cell.
+                if board[i][j] == 0 and nei_count == 3:
+                    change_grid[i][j] = 1 # Becomes alive
+                
+                elif board[i][j] == 1 and (nei_count == 2 or nei_count == 3):
+                    change_grid[i][j] = 1 # Stays alive
+
+        for i in range(nrow):
+            for j in range(ncol):
+                board[i][j] = change_grid[i][j]

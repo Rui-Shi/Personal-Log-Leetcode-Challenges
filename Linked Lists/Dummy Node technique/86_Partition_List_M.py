@@ -50,6 +50,29 @@ class Solution:
 
         return less_head.next  # Return the head of the combined list
             
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        small_head = ListNode(0)
+        small_tail = small_head
+        
+        large_head = ListNode(0)
+        large_tail = large_head
+        
+        while head:
+            if head.val < x:
+                small_tail.next = ListNode(head.val)
+                small_tail = small_tail.next
+            
+            else:
+                large_tail.next = ListNode(head.val)
+                large_tail = large_tail.next
+            
+            head = head.next
+            
+        small_tail.next = large_head.next
+        large_tail.next = None
+        
+        return small_head.next
         
         
             
