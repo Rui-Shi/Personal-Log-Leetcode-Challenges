@@ -75,18 +75,23 @@ class Solution:
         'M': 1000
         }
         
+        n = len(str)
         res = 0
-        for i in range(len(s) - 1, -1, -1):
-            current_value = roman_map[s[i]]
+        pre_value = 0
+        for i in range(n - 1, -1, -1):
+            cur_value = roman_map[str[i]]
             
-            if current_value < prev_value:
-                result -= current_value
+            if cur_value >= pre_value:
+                res += cur_value
+            
             else:
-                result += current_value
-
-            prev_value = current_value
-
-        return result
+                res -= cur_value
+            
+            pre_value = cur_value
+        
+        return res
+            
+            
         
         
         
