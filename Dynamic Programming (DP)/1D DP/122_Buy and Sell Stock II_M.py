@@ -46,6 +46,6 @@ class Solution:
         else:
             for i in range(1, len(prices)):
                 if prices[i] - prices[i - 1] > 0:
-                    profit =+ prices[i] - prices[i - 1]
+                    profit_cum =+ prices[i] - prices[i - 1]
         
         return profit_cum
