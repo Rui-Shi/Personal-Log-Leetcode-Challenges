@@ -55,7 +55,49 @@ class Solution:
         else:
             return head
             
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        if left == right or not head.next:
+            return head
         
+        i = 1
+        curr = head
+        pre = ListNode()
+        pre.next = curr
+        
+        while i < left:
+            pre = curr
+            curr = curr.next
+            i += 1
+        
+        left_1 = pre
+        left_2 = curr
+        
+        pre = curr
+        curr = curr.next
+        i += 1
+        
+        while i <= right:
+            next = curr.next
+            curr.next = pre
+            pre = curr
+            curr = next
+            i += 1
+        
+        right_1 = pre
+        right_2 = curr
+        
+        left_1.next = right_1
+        left_2.next = right_2
+        
+        if left == 1:
+            return right_1
+        else:
+            return head
+            
+            
+            
+            
         
         
         
