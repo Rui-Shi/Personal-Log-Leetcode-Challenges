@@ -50,21 +50,21 @@ class Solution:
     
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        mapping = {}
-        
         s_words = s.split()
+        mapping = {}
         
         if len(pattern) != len(s_words):
             return False
         
         for i, char in enumerate(pattern):
-            if char not in mapping:
-                if s_words[i] in mapping.values():
-                    return False
-                else:
-                    mapping[char] = s_words[i]
-            
-            else:
+            if char in mapping:
                 if mapping[char] != s_words[i]:
                     return False
+                
+            elif s_words[i] in mapping.values():
+                return False
+            
+            else:
+                mapping[char] = s_words[i]
+        
         return True
