@@ -41,37 +41,26 @@ class TreeNode:
 
 class Solution:
     def lowestCommonAncestor(self,
-                           root: Optional[TreeNode],
-                           p: TreeNode,
-                           q: TreeNode
-                          ) -> Optional[TreeNode]:
-        """
-        Finds the LCA using a recursive Depth-First Search (DFS) approach.
-        """
-        # Base Case for DFS: Stop if we hit None or find p or q.
+                             root: Optional[TreeNode],
+                             p: TreeNode,
+                             q: TreeNode
+                            ) -> Optional[TreeNode]:
+        
+        # If the root is null, or it's one of the nodes we're looking for, return the root.
         if root in (None, p, q):
             return root
-
-        # --- DFS Recursive Step ---
-        # Explore left subtree deeply first.
-        left_result = self.lowestCommonAncestor(root.left, p, q)
-
-        # Explore right subtree deeply.
-        right_result = self.lowestCommonAncestor(root.right, p, q)
-        # -------------------------
-
-        # Process results after visiting left and right subtrees (post-order processing).
-        if left_result and right_result:
-            # If p/q were found in separate subtrees, the current root is the LCA.
-            return root
-        else:
-            # Otherwise, the LCA (or p/q if LCA not yet found) is in whichever
-            # subtree returned a non-None result. Propagate that result up.
-            # If both are None, propagate None up.
-            return left_result or right_result
         
-            # This line effectively passes up the recursion either the found TreeNode (p, q, or a deeper LCA) 
-            # if it was located in only one of the subtrees, or None if neither subtree contained such a node.
+        # Recursively search for p and q in the left and right subtrees.
+        left_result = self.lowestCommonAncestor(root.left, p, q)
+        right_result = self.lowestCommonAncestor(root.right, p, q)
+        
+        # If both p and q are found in different subtrees, the current root is their LCA.
+        if left_result and right_result:
+            return root
+        
+        # Otherwise, the LCA is in the subtree where a node was found.
+        else:
+            return left_result or right_result
 
 class Solution:
     def lowestCommonAncestor(self,

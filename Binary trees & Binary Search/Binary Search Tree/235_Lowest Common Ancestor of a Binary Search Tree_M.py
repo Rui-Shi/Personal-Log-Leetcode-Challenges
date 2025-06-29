@@ -52,3 +52,22 @@ class Solution:
                 current = current.left
 
         return None  # Should not reach here for a valid BST and p, q in the BST
+
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if p.val > q.val:
+            p, q = q, p
+        
+        current = root
+        while current:
+            if p.val <= current.val <= q.val:
+                return current
+            elif current.val < p.val:
+                current = current.right
+            else:
+                current = current.left
+        return None
+                
+
+        
