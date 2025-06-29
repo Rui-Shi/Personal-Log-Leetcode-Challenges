@@ -72,7 +72,7 @@ class Solution:
                 
         return root
 
-
+# a better one with queue
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
         

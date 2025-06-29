@@ -44,3 +44,20 @@ class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         # Check if the tree is symmetric by calling the isMirror function on the left and right subtrees of the root
         return self.isMirror(root.left, root.right)
+
+
+class Solution:
+    def isMirror(self, left, right):
+        if not left and not right:
+            return True
+        elif not left or not right:
+            return False
+        elif left.val != right.val:
+            return False
+        else:
+            return self.isMirror(left.left, right.right) and self.isMirror(left.right, right.left)
+             
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        # Check if the tree is symmetric by calling the isMirror function on the left and right subtrees of the root
+        return self.isMirror(root.left, root.right)
+        

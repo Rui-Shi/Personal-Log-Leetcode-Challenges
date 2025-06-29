@@ -36,6 +36,21 @@ class Solution:
         root.right = self.buildTree(preorder[(1+split_index):], inorder[(split_index+1):])
         
         return root
+
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder:
+            return None
+        
+        root_val = preorder[0]
+        root = TreeNode(root_val)
+        split_index = inorder.index(root_val) # get the index of the spliting point
+        
+        root.left = self.buildTree(preorder[1:(1 + split_index)], inorder[0:split_index])
+        root.right = self.buildTree(preorder[(1 + split_index):], inorder[(1 + split_index):])
+        
+        return root
         
         
         

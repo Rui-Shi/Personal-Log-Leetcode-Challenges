@@ -55,3 +55,16 @@ class Solution:
 
         return root
 
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+      if not root:
+        return None
+      
+      root.left, root.right = root.right, root.left
+      
+      # Recursively invert the left and right subtrees
+      self.invertTree(root.left)
+      self.invertTree(root.right)
+
+      return root

@@ -61,39 +61,32 @@ class Solution:
         
         
 class Solution:
+    def preorder_helper(self, root):
+        res = []
+        if not root:
+            return res
+        
+        res.append(root.val)
+        res += self.preorder_helper[root.left]
+        res += self.preorder_helper[root.right]
+        
+        return res
+    
     def flatten(self, root: Optional[TreeNode]) -> None:
-        """
-        Do not return anything, modify root in-place instead.
-        """
+        value_list = self.preorder_helper(root)
         
-        def preorder_helper(root):
-            
-            if not root:
-                return []
-            
-            val_list = []
-            
-            val_list.append(root.val)
-            val_list += preorder_helper(root.left)
-            val_list += preorder_helper(root.right)
-        
-            return val_list
-        
-        val_list = preorder_helper(root)
-        
-        dummy = TreeNode()
-        cur = dummy
-        cur.right = root
-        
-        for val in val_list:
-            cur = cur.right
-            cur.val = val
+        cur = root
+        for val in value_list:
             cur.left = None
-            cur.right = TreeNode()
+            cur.val = val
+            if cur.right:
+                continue
+            else:
+                cur.right = TreeNode()
+                cur = cur.right
         
         cur.right = None
-        
-        return root                      
+        return root
             
             
             
