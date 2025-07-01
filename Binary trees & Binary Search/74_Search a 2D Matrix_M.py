@@ -38,7 +38,7 @@ class Solution:
             else:
                 bottom = mid
         
-        target_row = top
+        target_row = top if target < matrix[bottom][0] else bottom
         
         left = 0
         right = ncol - 1
