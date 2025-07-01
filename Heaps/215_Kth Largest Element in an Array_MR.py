@@ -29,9 +29,9 @@ class Solution:
     min_heap = []
         
     for num in nums:
-      heapq.heappush(min_heap, num)
+      heapq.heappush(min_heap, num) # Pushes the `item` onto the `heap`, maintaining the heap invariant 
       if len(min_heap) > k:
-        heapq.heappop(min_heap)
+        heapq.heappop(min_heap) # used to remove and return the smallest item from the heap, ensuring the heap invariant is maintained afterward.
       
     return min_heap[0]
         

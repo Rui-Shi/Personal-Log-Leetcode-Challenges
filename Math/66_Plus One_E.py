@@ -46,3 +46,20 @@ class Solution:
                 digits[i] = 0
         
         return [1] + digits
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        n = len(digits)
+        add_one = True
+        for i in range(n - 1, -1, -1):
+            if digits[i] < 9:
+                digits[i] += 1
+                add_one = False
+                break
+            else:
+                digits[i] = 0
+        
+        return [1] + digits if add_one else digits
+            
+            

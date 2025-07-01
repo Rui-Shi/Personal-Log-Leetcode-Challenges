@@ -31,26 +31,29 @@ from typing import List
 
 class Solution:
     def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
-        
+        # Handle edge cases: empty inputs or k=0
         if not nums1 or not nums2 or k == 0:
             return []
         
-        heap = []
-        
+        heap = [] # Min-heap: stores (sum, idx1, idx2)
         n1, n2 = len(nums1), len(nums2)
         
+        # Initialize heap with pairs (nums1[i], nums2[0]) for i in [0, min(k-1, n1-1)]
+        # This covers the smallest possible sums for each element in nums1
         for i in range(min(k, n1)):
             heapq.heappush(heap, (nums1[i] + nums2[0], i, 0))
-        res = []
+        
+        res = [] # Stores the k smallest pairs (actual values)
+
+        # Extract k pairs from the heap
         while k > 0 and heap:
-            current_sum, i, j = heapq.heappop(heap)
-            res.append([i, j])
-            
-            k -= 1
-            next_j = j + 1
-            
-            if next_j < n2:
-                heapq.heappush(heap, (nums1[i] + nums2[next_j], i, next_j))
+            current_sum, i, j = heapq.heappop(heap) # Get smallest sum pair
+            res.append([nums1[i], nums2[j]]) # Add actual pair to result
+            k -= 1 # Decrement count of remaining pairs needed
+
+            # If there's a next element in nums2 for nums1[i], add it to heap
+            if j + 1 < n2:
+                heapq.heappush(heap, (nums1[i] + nums2[j+1], i, j + 1))
             
         return res
                 

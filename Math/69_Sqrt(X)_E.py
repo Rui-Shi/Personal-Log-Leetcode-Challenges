@@ -58,3 +58,19 @@ class Solution:
             return left
         else:
             return left - 1
+
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        low = 1
+        high = x
+        
+        while low < high - 1:
+            mid = (low + high) // 2
+            if mid ** 2 < x:
+                low = mid
+            
+            else:
+                high = mid
+            
+        return low if high ** 2 != x else high
