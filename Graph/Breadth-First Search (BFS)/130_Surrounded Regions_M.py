@@ -77,6 +77,60 @@ class Solution:
             for c in range(ncols):
                 if (r, c) not in visited and board[r][c] == 'O':
                     bfs(r, c)
+
+from typing import List
+from collections import deque  # Using deque for efficient queue operations
+
+
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        
+        nrow = len(board)
+        ncol = len(board[0])
+        
+        if nrow == 1 or ncol == 1:
+            return
+        
+        visited = set()
+        directions = ((-1, 0), (1, 0), (0, -1), (0, 1))
+        
+        def bfs_helper(r, c):
+            nonlocal visited
+            q = deque([(r, c)])
+            surrounded = True
+            region = []
+            
+            while q:
+                r, c = q.popleft()
+                if r == 0 or r == nrow - 1 or c == 0 or c == ncol - 1:
+                    surrounded = False
+                
+                visited.add((r, c))
+                region.append((r, c))
+                
+                for dr, dc in directions:
+                    r_new = r + dr
+                    c_new = c + dc
+                
+                    if 0 <= r_new < nrow and 0 <= c_new < ncol and board[r_new][c_new] == 'O' and \
+                            (r_new, c_new) not in visited:
+                                q.append((r_new, c_new))
+                         
+            if surrounded:
+                for r, c in region:
+                    board[r][c] = "X"
+        
+        for r in range(nrow):
+            for c in range(ncol):
+                if (r, c) not in visited and board[r][c] == "O":
+                    bfs_helper(r, c)
+                
+                
+                
+            
                 
         
         

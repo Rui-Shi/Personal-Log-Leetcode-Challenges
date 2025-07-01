@@ -97,6 +97,24 @@ class Solution:
 
             # Recursively clone the neighbors and assign them to the copy's neighbors
             copy.neighbors = [dfs(neighbor) for neighbor in node.neighbors]
-            return copy  # Return the c  
+            return copy  # Return the copy 
         return dfs(node)  # Start the DFS from the given node
+
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        
+        old_to_new_mapping = {}
+        
+        def dfs_helper(node):
+            nonlocal old_to_new_mapping
+            if node in old_to_new_mapping:
+                return old_to_new_mapping[node]
+            else:
+                node_copy = Node(node.val)
+                old_to_new_mapping[node] = node_copy
+                node_copy.neighbors = [dfs_helper(node_neighbor) for node_neighbor in node.neighbors]
+            
+            return node_copy
+        
+        return dfs_helper(node)
         
