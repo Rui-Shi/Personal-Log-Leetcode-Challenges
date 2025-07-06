@@ -29,27 +29,46 @@
 # 1 <= n <= 3 * 104
 # -3 * 104 <= nums[i] <= 3 * 104
 
+from typing import List
+
 class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
-        n = len(nums)
-        max_end_here = 0
+        """
+        Calculates the maximum possible sum of a non-empty subarray of a circular array.
+        """
+        # Case 1: Find the maximum subarray sum for a non-circular array.
+        # This is the standard Kadane's Algorithm.
         max_so_far = -float('inf')
+        max_ending_here = 0
+        for num in nums:
+            max_ending_here += num
+            if max_so_far < max_ending_here:
+                max_so_far = max_ending_here
+            if max_ending_here < 0:
+                max_ending_here = 0
+
+        # Case 2: Find the minimum subarray sum to calculate the circular max.
+        # The logic is the same as Kadane's but tracks the minimum sum.
+        min_so_far = float('inf')
+        min_ending_here = 0
+        for num in nums:
+            min_ending_here += num
+            if min_so_far > min_ending_here:
+                min_so_far = min_ending_here
+            if min_ending_here > 0:
+                min_ending_here = 0
+
+        total_sum = sum(nums)
         
-        for i in range(2 * n):
-            index_used = set()
-            index = i % n
-            
-            if index not in index_used:
-                index_used.add(index)
-                max_end_here += nums[index]
-                max_so_far = max(max_so_far, max_end_here)
-                if max_end_here < 0:
-                    max_end_here = 0
-                    index_used = set()
-            else:
-                break
-        
-        return max_so_far
+        # If all numbers are negative, max_so_far will be the largest negative number.
+        # The circular sum (total_sum - min_so_far) would incorrectly be 0.
+        # In this case, the non-circular max is the answer.
+        if max_so_far < 0:
+            return max_so_far
+
+        # The result is the maximum of the non-circular sum and the circular sum.
+        # Circular sum = total_sum - (minimum subarray sum)
+        return max(max_so_far, total_sum - min_so_far)
                 
             
             
