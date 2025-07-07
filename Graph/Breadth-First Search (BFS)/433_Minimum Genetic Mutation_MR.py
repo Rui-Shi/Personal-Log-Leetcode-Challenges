@@ -184,4 +184,37 @@ print(f"Example 5 Input: start='{startGene5}', end='{endGene5}', bank={bank5}")
 print(f"Example 5 Output: {sol.minMutation(startGene5, endGene5, bank5)}") # Expected: 0                  
         
                 
+class Solution:
+    def minMutation(self, startGene: str, endGene: str, bank: List[str]) -> int:
+        chars = ["A", "C", "G", "T"]
+        
+        if endGene not in bank:
+            return -1
+        
+        if startGene == endGene:
+            return 0
+        
+        q = deque([(startGene, 0)])
+        visited = set()
+        
+        while q:
+            GeneCur, move = q.popleft()
+            visited.add(GeneCur)
+            
+            if GeneCur == endGene:
+                return move
+            
+            for i in range(len(GeneCur)):
+                for char in chars:
+                    if char != GeneCur[i]:
+                        GeneCur_list = list(GeneCur)
+                        GeneCur_list[i] = char
+                        newGene = ''.join(GeneCur_list)
+                        if newGene in bank and newGene not in visited:
+                            q.append((newGene, move + 1))
+            
+            return -1
+                        
+                            
+        
         

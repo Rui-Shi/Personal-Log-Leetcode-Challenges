@@ -39,6 +39,35 @@ class Solution:
                 dfs_helper(i)
         
         return res
+
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        visited = set()
+        
+        n = len(isConnected)
+        
+        if n == 1:
+            return 1
+        
+        def dfs_helper(start):
+            nonlocal visited
+            visited.add(start)
+            for neighbor in range(n):
+                if neighbor not in visited and isConnected[start][neighbor] ==:
+                    dfs_helper(neighbor)
+        
+        count = 0
+        for i in range(n):
+            if i not in visited:
+                dfs_helper(i)
+                count += 1
+        
+        return count
+            
+        
+        
+        
             
         
                     

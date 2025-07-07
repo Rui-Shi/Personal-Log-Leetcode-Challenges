@@ -93,26 +93,29 @@ class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         color = {}
         
+        n = len(graph)
+        
         def dfs_helper(node):
             nonlocal color
-            
-            for neigh in graph[node]:
-                if neigh in color:
-                    if color[neigh] == color[node]:
+            for neighbor in graph[node]:
+                if neighbor in color:
+                    if color[neighbor] == color[node]:
                         return False
+                    
                 else:
-                    color[neigh] = 1 - color[node]
-                    if not dfs_helper(neigh):
+                    color[neighbor] = 1 - color[node]
+                    if not dfs_helper(neighbor):
                         return False
             return True
-                                
-                
-        for i in range(len(graph)): # Iterate through all nodes in the graph, This loop is important to handle disconnected graphs.
-            if i not in color:
-                color[i] = 0
-                if not dfs_helper(i):
+        
+        for node in range(n):
+            if node not in color:
+                color[node] = 0
+                if not dfs_helper(node):
                     return False
+            
         return True
+                    
                             
                 
                 

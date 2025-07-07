@@ -121,3 +121,48 @@ class Solution:
 # values1 = [2.0,3.0]
 # queries1 = [["a","c"],["b","a"],["a","e"],["a","a"],["x","x"]]
 # print(f"Example 1 Output (DFS, less notation): {sol.calcEquation(equations1, values1, queries1)}")
+
+import collections
+
+class Solution:
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        
+        graph = collections.defaultdict(dict)
+        
+        variables = set()
+        for i, (u, v) in enumerate(equations):
+            if values[i] != 0:
+                graph[u][v] = values[i]
+                graph[v][u] = 1 / values[i]
+            variables.add(u)
+            variables.add(v)
+                
+        visited = set()
+        def dfs_helper(graph, cur_val, tar_val, cur_prod):
+            nonlocal visited
+            visited.add(cur_val)
+            if cur_val == tar_val:
+                return cur_prod
+            
+            for neighbor in graph[cur_val]:
+                if neighbor not in visited:
+                    res = dfs_helper(graph, neighbor, tar_val, cur_prod * graph[cur_val][neighbor])
+                    if res != -1:
+                        return res
+            return -1
+        
+        result = []
+        for cur_val, tar_val in queries:
+            visited = set()
+            if cur_val not in variables:
+                result.append(-1)
+                
+            elif cur_val == tar_val:
+                result.append(1)
+            
+            else:
+                result.append(dfs_helper(graph, cur_val, tar_val, 1))
+        
+        return result
+            
+                
