@@ -59,7 +59,35 @@ class Solution:
                 
         levelTraversal([root])
         
-        return res   
+        return res 
+
+
+# bfs travesal:
+from collections import deque
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        
+        q = deque([root])
+        
+        res = []
+        while q:
+            size = len(q)
+            cur_level = []
+            for _ in range(size):
+                cur_node = q.popleft()
+                cur_level.append(cur_node.val)
+                
+                if cur_node.left:
+                    q.append(cur_node.left)
+                
+                if cur_node.right:
+                    q.append(cur_node.right)
+            
+            res.append(cur_level)
+            
+        return res
         
         
         

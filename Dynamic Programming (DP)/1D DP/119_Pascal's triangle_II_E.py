@@ -43,3 +43,27 @@ class Solution:
                 Pas_tri.append(list(newRow))
                 newRow = Pas_tri[-1]
         return newRow
+
+
+class Solution:
+    def getRow(self, numRows: int) -> List[List[int]]:
+        numRows += 1
+        if numRows == 0:
+            return []
+        
+        elif numRows == 1:
+            return [1]
+        
+        elif numRows == 2:
+            return [1, 1]
+        
+        else:
+            dp = [[1], [1, 1]]
+            for i in range(3, numRows + 1):
+                cur_level = [1] * i
+                for j in range(1, i - 1):
+                    cur_level[j] = dp[i - 2][j - 1] + dp[i - 2][j]
+                dp.append(cur_level[:])
+        
+        return dp[-1]
+            

@@ -103,7 +103,7 @@ class Solution:
         # Otherwise, a cycle was detected, and no valid order exists.
         return result if len(result) == numCourses else []
 
-# A much better one
+# A much better one using bfs
 from collections import deque, defaultdict
 
 class Solution:
