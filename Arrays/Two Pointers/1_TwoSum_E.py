@@ -67,3 +67,13 @@ class Solution:
 # Hash map lookups, insertions, and deletions have an average time complexity of O(1).
 
 # Since the loop runs n times, and each iteration takes constant time, the overall time complexity is O(n) * O(1) = O(n).
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        numMap = {}
+        for i, num in enumerate(nums):
+            x = target - num
+            if x in numMap:
+                return [numMap[x], i]
+            else:
+                numMap[num] = i

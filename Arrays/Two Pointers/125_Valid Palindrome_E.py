@@ -34,7 +34,7 @@ class Solution:
         s = s.lower()
 
         for char in s:
-            if char.isalnum():
+            if char.isalnum(): # check if a char is a letter or num
                 s_clean += char
                 
         if s_clean == s_clean[::-1]:
