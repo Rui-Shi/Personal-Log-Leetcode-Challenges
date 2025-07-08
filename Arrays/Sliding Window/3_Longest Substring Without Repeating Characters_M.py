@@ -30,12 +30,35 @@ class Solution:
 
         for right in range(len(s)):
             while s[right] in char_set:
-                char_set.remove(s[left])
+                char_set.remove(s[left]) # remove a element in a set
                 left += 1
             
             char_set.add(s[right])
             max_length = max(max_length, len(char_set))
         return max_length
+    
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left = 0
+        max_length = 0
+        char_set = set()
+        
+        for right in range(len(s)):
+            if s[right] not in char_set:
+                char_set.add(s[right])
+            
+            else:
+                while s[right] in char_set:
+                    char_set.remove(s[left])
+                    left += 1
+                char_set.add(s[right])
+            
+            max_length = max(max_length, right - left + 1)
+        
+        return max_length
+        
+        
+
             
             
 
