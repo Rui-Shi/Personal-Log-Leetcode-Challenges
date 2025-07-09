@@ -71,37 +71,41 @@ class Solution:
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         n1, n2, n3 = len(s1), len(s2), len(s3)
+        
+        # If the lengths don't add up, it's impossible.
         if n1 + n2 != n3:
             return False
         
+        # dp[i][j] is true if s1's first i chars and s2's first j chars
+        # can interleave to form s3's first i+j chars.
         dp = [[False] * (n2 + 1) for _ in range(n1 + 1)]
         
+        # Base case: two empty strings can form an empty string.
         dp[0][0] = True
         
+        # Fill the first column (interleaving s1 with an empty s2)
         for i in range(1, n1 + 1):
-            if dp[i - 1][0] and s1[i - 1] == s3[i - 1]:
-                dp[i][0] = True
-                
+            dp[i][0] = dp[i - 1][0] and s1[i - 1] == s3[i - 1]
+            
+        # Fill the first row (interleaving s2 with an empty s1)
         for j in range(1, n2 + 1):
-            if dp[0][j - 1] and s2[j - 1] == s3[j - 1]:
-                dp[0][j] = True
-        
+            dp[0][j] = dp[0][j - 1] and s2[j - 1] == s3[j - 1]
+            
+        # Fill the rest of the DP table
         for i in range(1, n1 + 1):
             for j in range(1, n2 + 1):
-                char = s3[i + j - 1]
+                # The current character in s3 we are trying to match
+                s3_char = s3[i + j - 1]
                 
-                if dp[i - 1][j] and s1[i - 1] == char:
-                    s1_fill = True
-                else:
-                    s1_fill = False
+                # Case 1: The current char of s3 matches s1's char, and the previous state (without this char) was valid.
+                from_s1 = dp[i - 1][j] and s1[i - 1] == s3_char
                 
-                if dp[i][j - 1] and s2[j - 1] == char:
-                    s2_fill = True
-                else:
-                    s2_fill = False
+                # Case 2: The current char of s3 matches s2's char, and the previous state (without this char) was valid.
+                from_s2 = dp[i][j - 1] and s2[j - 1] == s3_char
                 
-                dp[i][j] = s1_fill or s2_fill
+                dp[i][j] = from_s1 or from_s2
                 
+        # The final answer is in the bottom-right cell of the DP table.
         return dp[n1][n2]
                 
         
