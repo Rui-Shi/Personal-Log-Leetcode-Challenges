@@ -66,3 +66,33 @@ class Solution:
         self.dfs_helper(root, "", nums)
         print(nums)
         return sum(nums)
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        path_list = []
+        
+        def dfs_helper(node, path_cur):
+            if not node:
+                if path_cur:
+                    path_list.append(int(path_cur))
+            
+            else:
+                if not node.left and not node.right:
+                    path_list.append(int(path_cur + str(node.val)))
+                
+                else:
+                    if node.left:
+                        dfs_helper(node.left, path_cur + str(node.val))
+                    
+                    if node.right:
+                        dfs_helper(node.right, path_cur + str(node.val))
+        
+        dfs_helper(root, "")
+        return sum(path_list)

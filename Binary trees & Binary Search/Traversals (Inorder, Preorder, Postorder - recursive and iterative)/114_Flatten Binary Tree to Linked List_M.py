@@ -67,24 +67,25 @@ class Solution:
             return res
         
         res.append(root.val)
-        res += self.preorder_helper[root.left]
-        res += self.preorder_helper[root.right]
+        res += self.preorder_helper(root.left)
+        res += self.preorder_helper(root.right)
         
         return res
     
     def flatten(self, root: Optional[TreeNode]) -> None:
         value_list = self.preorder_helper(root)
         
-        cur = root
+        cur = TreeNode()
+        cur.right = root
         for val in value_list:
+            cur = cur.right
             cur.left = None
             cur.val = val
             if cur.right:
-                continue
+                pass
             else:
                 cur.right = TreeNode()
-                cur = cur.right
-        
+                
         cur.right = None
         return root
             
