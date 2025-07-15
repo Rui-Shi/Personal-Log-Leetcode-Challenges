@@ -100,4 +100,7 @@ class Solution:
             expand_palindromic(s, i, i)
             expand_palindromic(s, i, i + 1)
         
+        print(self.res_left)
+        print(self.res_right)
         return s[self.res_left : self.res_right + 1]
+            

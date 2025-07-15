@@ -43,7 +43,7 @@ class Solution:
         right = n
 
         # Binary search
-        while right > (left + 1):  
+        while right > left:  
             # Calculate the middle version
             mid = (left + right) // 2  
 
@@ -52,9 +52,9 @@ class Solution:
                 right = mid
             # Otherwise, search in the right half
             else:                 
-                left = mid
+                left = mid + 1
                 
         # 'right' will hold the first bad version
-        return right  
+        return left
                 
         

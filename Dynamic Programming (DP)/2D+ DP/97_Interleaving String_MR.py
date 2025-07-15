@@ -107,5 +107,31 @@ class Solution:
                 
         # The final answer is in the bottom-right cell of the DP table.
         return dp[n1][n2]
+
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        n1, n2, n3 = len(s1), len(s2), len(s3)
+        
+        if n1 + n2 != n3:
+            return False
+        
+        dp = [[False] * (n2 + 1) for _ in range(n1 + 1)]
+        
+        dp[0][0] = True
+        
+        for i in range(n1):
+            dp[0][i] = dp[0][i - 1] and s1[i] == s3[i]
+        
+        for j in range(n2):
+            dp[j][0] = dp[j - 1][0] and s2[j] == s3[j]
+            
+        for i in range(1, n1):
+            for j in range(1, n2):
+                from_s1 = dp[j][i - 1] and s1[i - 1] == s3[i + j -1]
+                from_s2 = dp[j - 1][i] and s2[j - 1] == s3[i + j -1]
+                
+                dp[i][j] = from_s1 or from_s2
+        
+        return dp[n1][n2]
                 
         
