@@ -89,5 +89,27 @@ class Solution:
 
         backtrack(0, [], 0)
         return res
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        
+        def backtrack(start_index, cur_comb, current_sum):
+            if current_sum == target:
+                res.append(cur_comb[:])
+            
+            if current_sum > target:
+                return
+            
+            for i in range(start_index, len(candidates)):
+                candidate = candidates[i]
+                
+                cur_comb.append(candidate)
+                
+                backtrack(i, cur_comb, current_sum + candidate)
+                cur_comb.pop()
+        
+        backtrack(0, [], 0)
+        return res
             
             

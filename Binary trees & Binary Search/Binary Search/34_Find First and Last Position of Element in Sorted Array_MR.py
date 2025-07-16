@@ -124,7 +124,38 @@ class Solution:
 
         return [left_bound, right_bound]
                 
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        def find_bound(is_first):
+            left, right = 0, len(nums) - 1
+            bound_index = -1
             
+            while left <= right:
+                mid = (left + right) // 2
+                
+                if nums[mid] < target:
+                    left = mid + 1
+                
+                elif nums[mid] > target:
+                    right = mid - 1
+                
+                else:
+                    bound_index = mid
+                
+                if is_first:
+                    right = mid - 1
+                
+                else:
+                    left = mid + 1
+            return bound_index
+        # Find the leftmost and rightmost bounds by calling the helper
+        left_bound = find_bound(True)
+        right_bound = find_bound(False)
+
+        return [left_bound, right_bound] 
+    
+                    
+                
             
         
         
