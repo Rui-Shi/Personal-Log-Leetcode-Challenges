@@ -79,5 +79,38 @@ class ML_clustering:
         return centroids, clusters
 
 
+class K_means:
+    def __init__(self, input_data, k, max_iter = 5000):
+        self.data = input_data
+        self.max_iter = max_iter
+        self.k
+            
+    def fit(self):
+        n_samples = self.data.shape[0]
+        random_index = np.random.choice(n_samples, k, replace = False)
+        centroids = self.data[random_index]
+        clusters = np.zeros(n_samples)
+        
+        for _ in range(self.max_iter):
+            old_clusters = clusters.copy()
+            for index, point in self.data:
+                dists = [np.sqrt(np.sum((point - centroid) ** 2)) for centroid in centroids]
+                clusters[index] = np.argmin(dists)
+            
+            if old_clusters == clusters:
+                break
+            
+            for cluster_index in range(k):
+                points_in_cluster = self.data[clusters == cluster_index]
+                if len(points_in_cluster) > 0:
+                    centroids[cluster_index] = np.mean(points_in_cluster, axis=0)
+    
+        return centroids, clusters
+                    
+            
+        
+            
+
+
         
         
