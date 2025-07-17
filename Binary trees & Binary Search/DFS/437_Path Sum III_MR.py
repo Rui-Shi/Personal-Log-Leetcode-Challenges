@@ -117,6 +117,33 @@ class Solution:
         
         dfs_helper(root, 0)
         return total_paths
+
+import collections
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        total_path = 0
+        pre_fix = collections.defaultdict(int)
+        pre_fix[0] = 1
+        
+        def dfs_helper(node, cur_sum):
+            nonlocal total_path
+            
+            if not node:
+                return
+            
+            cur_sum += node.val
+            complement = cur_sum - targetSum
+            total_path += pre_fix[complement]
+            pre_fix[cur_sum] += 1
+            
+            dfs_helper(node.left, cur_sum)
+            dfs_helper(node.right, cur_sum)
+            
+            pre_fix[cur_sum] -= 1
+            
+        dfs_helper(root, 0)
+        return total_path
+    
             
             
         

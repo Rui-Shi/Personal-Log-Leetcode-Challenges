@@ -77,5 +77,7 @@ class ML_clustering:
                     centroids[cluster_index] = np.mean(points_in_cluster, axis=0)
     
         return centroids, clusters
+
+
         
         

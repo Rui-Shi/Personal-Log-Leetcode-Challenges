@@ -72,11 +72,12 @@ class Solution:
         if root in (None, p, q):
             return root
         
-        left_result = self.lowestCommonAncestor(root.left, p, q)
-        right_result = self.lowestCommonAncestor(root.right, p, q)
+        else:
+            left_result = self.lowestCommonAncestor(root.left, p, q)
+            right_result = self.lowestCommonAncestor(root.right, p, q)
         
         if left_result and right_result:
             return root
         
-        else:
-            return left_result or right_result
+        else: 
+            return left_result or right_result # return the object that is not None

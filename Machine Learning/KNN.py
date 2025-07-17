@@ -81,14 +81,30 @@ class KNN:
         dists = [np.sum((x_new - point))**2 for point in self.X_train]
         neighbor_index = np.argsort(dists)[:self.k]
         neighbor_label = self.Y_train[neighbor_index]
-        x_label = Counter(neighbor_label).most_common(1)
-        return x_label[0][0]
+        x_label = Counter(neighbor_label).most_common(1) # return 1st most common label as tuple
+        return x_label[0][0] # return this label
     
     # for a group of new data
     def predict(self, X_new):
         X_label = [self.predict_single(point) for point in X_new]
         return np.arrary(X_label)
-        
+
+class KNN:
+    def __init__(self, X, Y, k = 3):
+        self.k = k
+        self.X_train = X
+        self.Y_train = Y
+    
+    def predict_single(self, x_new):
+        dists = [np.sum((x_new - point) ** 2) for point in self.X_train]
+        neighbor_index = np.argsort(dists)[:self.k]
+        neighbor_label = self.Y_train[neighbor_index]
+        x_label = Counter(neighbor_label).most_common(1)
+        return x_label[0][0]
+    
+    def predict(self, X_new):
+        X_label = [self.predict_single(x_new) for x_new in X_new]
+        return np.array(X_label)
         
     
 

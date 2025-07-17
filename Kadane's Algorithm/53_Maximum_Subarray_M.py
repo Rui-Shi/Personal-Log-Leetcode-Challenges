@@ -46,3 +46,17 @@ class Solution:
                 max_ending_here = 0
                 
         return max_so_far
+
+class Solution:
+    def maxSubArray(self, nums: list[int]) -> int:
+        max_ending_here = 0
+        max_so_far = -float('inf')
+        
+        for num in nums:
+            max_ending_here += num
+            max_so_far = max(max_so_far, max_ending_here)
+            
+            if max_ending_here < 0:
+                max_ending_here = 0
+        
+        return max_so_far
