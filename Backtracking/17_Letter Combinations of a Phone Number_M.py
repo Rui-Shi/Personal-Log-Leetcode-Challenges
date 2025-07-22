@@ -102,10 +102,10 @@ class Solution:
         def backtrack(start, cur_comb):
             if len(cur_comb) == n:
                 res.append(cur_comb)
-                
+            
             else:
-                str = maps[digits[start]]
-                for char in str:
+                chars = maps[digits[start]]
+                for char in chars:
                     backtrack(start + 1, cur_comb + char)
         
         backtrack(0, '')

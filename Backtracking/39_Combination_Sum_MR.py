@@ -98,18 +98,18 @@ class Solution:
             if current_sum == target:
                 res.append(cur_comb[:])
             
-            if current_sum > target:
+            elif current_sum > target:
                 return
             
-            for i in range(start_index, len(candidates)):
-                candidate = candidates[i]
-                
-                cur_comb.append(candidate)
-                
-                backtrack(i, cur_comb, current_sum + candidate)
-                cur_comb.pop()
-        
+            else:
+                for i in range(start_index, len(candidates)):
+                    num_new = candidates[i]
+                    
+                    cur_comb.append(num_new)
+                    
+                    backtrack(i, cur_comb, current_sum + num_new)
+                    
+                    cur_comb.pop()
         backtrack(0, [], 0)
-        return res
-            
+        return res  
             

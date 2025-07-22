@@ -36,4 +36,28 @@ class Solution:
         
         backtrack_helper("", 0, 0, n)
         return list(res)
+
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        
+        def backtrack(cur_comb, left_count, right_count, n):
+            if len(cur_comb) == 2 * n:
+                res.append(cur_comb)
+                return
+            
+            elif left_count > right_count:
+                if left_count < n:
+                    backtrack(cur_comb + "(", left_count + 1, right_count, n)
+                
+                backtrack(cur_comb + ")", left_count, right_count + 1, n)
+            
+            else:
+                backtrack(cur_comb + "(", left_count + 1, right_count, n)
+            
+        backtrack("", 0, 0, n)
+        return res
+                    
+        
         
