@@ -32,29 +32,31 @@
 # 1 <= candidates[i] <= 50
 # 1 <= target <= 30
 
-
+# Time complexity O(2^N)
 class Solution:
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
-        
-        def backtrack(start_index, cur_comb, current_sum):
-            if current_sum == target:
-                res.append(cur_comb[:])
-            
-            elif current_sum > target:
-                return
-            
-            else:
-                for i in range(start_index, len(candidates)):
-                    candidate = candidates[i]
-                    cur_comb.add(candidate)
-                    backtrack(i + 1, cur_comb, current_sum + candidate)
-                    cur_comb.remove(candidate)
-                    
-        backtrack(0, set(), 0)
-        return res
+  def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    res = []
+    seen_comb = []
+    def backtrack(start, cur_comb, cur_sum):
+      if cur_sum == target:
+        if set(cur_comb) not in seen_comb:
+          res.append(cur_comb[:])
+          seen_comb.append(set(cur_comb))
+        return
+      
+      elif cur_sum > target:
+        return
+      
+      else:
+        for i in range(start, len(candidates)):
+          candidate = candidates[i]
+          cur_comb.append(candidate)
+          backtrack(i + 1, cur_comb, cur_sum + candidate)
+          cur_comb.pop()
+    backtrack(0, [], 0)
+    return res
 
-
+# Time complexity O(2^N)
 # a better one
 from typing import List
 
@@ -98,3 +100,5 @@ class Solution:
     # Start the backtracking process.
     backtrack(0, [], target)
     return result
+        
+      
