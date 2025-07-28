@@ -48,7 +48,7 @@
 
 # Write your MySQL query statement below
 
-SELECT DISTINCT author_id AS id # avoid duplicate id s 
+SELECT DISTINCT author_id AS id # avoid duplicate id s  -- DISTINCT KEEP only one of the duplicated row and discard the rest.
 FROM Views
 WHERE author_id = viewer_id
 ORDER BY id;
