@@ -38,3 +38,10 @@ HAVING COUNT(*) >= 5;
 -- HAVING clause:
 -- Filters groups after grouping and aggregation have been performed.
 -- Is used to filter groups based on the results of aggregate functions.
+
+-- SELECT column_name, aggregate_function(column_name)
+-- FROM table_name
+-- WHERE condition -- Filters individual rows BEFORE grouping
+-- GROUP BY column_name
+-- HAVING condition -- Filters groups AFTER grouping
+-- ORDER BY column_name;

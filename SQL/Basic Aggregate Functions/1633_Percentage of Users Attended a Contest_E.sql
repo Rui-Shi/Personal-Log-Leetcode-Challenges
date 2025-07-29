@@ -85,8 +85,8 @@ ORDER BY percentage DESC, contest_id;
 
 -- alterative
 
-SELECT contest_id, 
-		ROUND(COUNT(DISTINCT user_id)/(SELECT COUNT(DISTINCT user_id) FROM Users)*100, 2) AS percentage
-FROM Register
-GROUP BY contest_id
+SELECT r.contest_id,
+ROUND(COUNT(r.contest_id) / (SELECT COUNT(DISTINCT user_id) FROM Users) * 100, 2) AS percentage
+FROM Register r
+GROUP BY r.context_id
 ORDER BY percentage DESC, contest_id;

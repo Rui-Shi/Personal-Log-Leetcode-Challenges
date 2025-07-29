@@ -66,18 +66,36 @@
 
 # Write your MySQL query statement below
 
-SELECT num
-FROM MyNumbers
-GROUP BY num
-ORDER BY num DESC
-LIMIT 1;
+-- you can solve this by finding all single numbers, ordering them from largest to smallest, and then taking the first one using LIMIT 1
+-- SELECT (...) AS num: The entire query is wrapped as a scalar subquery. If the inner query finds a number, it's returned. If the inner query finds no single numbers and returns an empty set, the scalar subquery evaluates to NULL, satisfying the problem's requirement.
+SELECT
+    (
+        SELECT
+            num
+        FROM
+            MyNumbers
+        GROUP BY
+            num
+        HAVING
+            COUNT(num) = 1
+        ORDER BY
+            num DESC
+        LIMIT 1
+    ) AS num;
 
 
-SELECT MAX(num) AS num
-FROM MyNumbers
-WHERE num IN (
-    SELECT num
-    FROM MyNumbers
-    GROUP BY num
-    HAVING COUNT(num) = 1
-)
+-- To find the largest single number, you can first identify all numbers that appear only once and then select the maximum value from that group.
+
+SELECT
+    MAX(num) AS num
+FROM
+    (
+        SELECT
+            num
+        FROM
+            MyNumbers
+        GROUP BY
+            num
+        HAVING
+            COUNT(num) = 1
+    ) AS single_numbers;
