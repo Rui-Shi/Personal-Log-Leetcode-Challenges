@@ -83,35 +83,35 @@ class Solution:
 # use backtrack                 
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        
-        n = len(digits)
-        
-        if n == 0:
+        if not digits:
             return []
-        
-        maps = {'2': 'abc',
-                '3': 'def',
-                '4': 'ghi',
-                '5': 'jkl',
-                '6': 'mno',
-                '7': 'pqrs',
-                '8': 'tuv',
-                '9': 'wxyz'}
+        map = {
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz'
+        }
         res = []
-        
-        def backtrack(start, cur_comb):
-            if len(cur_comb) == n:
+        def backtrack_helper(cur_comb):
+            if len(cur_comb) == len(digits):
                 res.append(cur_comb)
             
             else:
-                chars = maps[digits[start]]
-                for char in chars:
-                    backtrack(start + 1, cur_comb + char)
+                candidates = map[digits[len(cur_comb)]]
+                for candidate in candidates:
+                    backtrack_helper(cur_comb + candidate)
         
-        backtrack(0, '')
+        backtrack_helper('')
         
         return res
-            
+
+# Time complexity:
+# Let N be the length of the input digits string.
+# O(N * 4^N)
           
               
                 

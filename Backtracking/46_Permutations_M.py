@@ -22,6 +22,7 @@
 # -10 <= nums[i] <= 10
 # All the integers of nums are unique.
 
+# Time complexity O(N * N!)
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         n = len(nums)
@@ -41,7 +42,7 @@ class Solution:
                 
             else:
                 for num in nums_set:
-                    backtrack(nums_set - {num}, cur_comb + [num])
+                    backtrack(nums_set - {num}, cur_comb + [num]) # nums_set - {num}: delete a num from a set
                     
         backtrack(nums_set, [])
         
