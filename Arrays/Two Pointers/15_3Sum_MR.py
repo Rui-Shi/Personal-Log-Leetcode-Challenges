@@ -61,7 +61,9 @@ class Solution:
     return result
 
 
-# better solution O(nlogn):
+# better solution 
+# Sorting: O(nlogn):
+# Finding the triblet: O(n^2)
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         result = []

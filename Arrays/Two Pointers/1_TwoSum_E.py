@@ -72,8 +72,8 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         numMap = {}
         for i, num in enumerate(nums):
-            x = target - num
-            if x in numMap:
-                return [numMap[x], i]
-            else:
-                numMap[num] = i
+            if target - num in numMap:
+                return[numMap[target - num], i]
+            
+            numMap[num] = i
+        return []

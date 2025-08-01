@@ -82,34 +82,59 @@ class Solution:
                 result.append(0)  # The result is zero.
         return result  # Return the result list.
 
+# Time complexity: O(n)
 
-def productExceptSelf(nums):
-    """
-    Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
-    The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
-    You must write an algorithm that runs in O(n) time and without using the division operation.
+class Solution:
+    def productExceptSelf(self,nums):
+        pre_fix = [1] * len(nums)
+        pre_fix_inverse = [1] * len(nums)
+        nums_inverse = nums[::-1]
+        
+        for i in range(1, len(nums)):
+            pre_fix[i] = pre_fix[i-1] * nums[i-1]
+            pre_fix_inverse[i] = pre_fix_inverse[i-1] * nums_inverse[i-1]
+        
+        pre_fix_inverse = pre_fix_inverse[::-1]
+        
+        res = []
+        
+        for i in range(len(nums)):
+            res.append(pre_fix[i] * pre_fix_inverse[i])
+        
+        return res
 
-    Args:
-        nums: A list of integers.
 
-    Returns:
-        A list of integers.
-    """
-    n = len(nums)
-    answer = [1] * n
+class Solution:
+    def productExceptSelf(self,nums):
+        """
+        Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+        The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+        You must write an algorithm that runs in O(n) time and without using the division operation.
+
+        Args:
+            nums: A list of integers.
+
+        Returns:
+            A list of integers.
+        """
+        n = len(nums)
+        answer = [1] * n
+        
+        # Calculate prefix products
+        prefix = 1
+        for i in range(1, n):
+            prefix *= nums[i - 1]
+            answer[i] *= prefix
+        
+        # Calculate suffix products and multiply with prefix products
+        suffix = 1
+        for i in range(n - 2, -1, -1):
+            suffix *= nums[i + 1]
+            answer[i] *= suffix
+        
+        return answer
     
-    # Calculate prefix products
-    prefix = 1
-    for i in range(1, n):
-        prefix *= nums[i - 1]
-        answer[i] *= prefix
-    
-    # Calculate suffix products and multiply with prefix products
-    suffix = 1
-    for i in range(n - 2, -1, -1):
-        suffix *= nums[i + 1]
-        answer[i] *= suffix
-    
-    return answer
+
+
         
     

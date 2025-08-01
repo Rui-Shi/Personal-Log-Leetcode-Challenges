@@ -29,6 +29,9 @@
 # Explanation: There are no valid combinations.
 # Using 4 different numbers in the range [1,9], the smallest sum we can get is 1+2+3+4 = 10 and since 10 > 1, there are no valid combination.
 
+
+
+# Time complexity O()
 from typing import List
 
 class Solution:
@@ -97,4 +100,28 @@ output4 = solver.combinationSum3(k4, n4)
 print(f"\nInput: k = {k4}, n = {n4}")
 print(f"Output: {output4}")
 # Expected: [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
+
+# Time complexity O(k * (9, k))
+
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        # store all the comb
+        res = []
+        
+        def backstrack_helper(start_index, count, cur_comb, cur_sum, target):
+            if cur_sum == target and count == k:
+                res.append(cur_comb[:])
+            
+            elif cur_sum > target or count > k or start_index > 9:
+                return
+            
+            else:
+                for i in range(start_index, 10):
+                    cur_comb.append(i)
+                    backstrack_helper(i + 1, count + 1, cur_comb, cur_sum + i, target)
+                    cur_comb.pop()
+        
+        backstrack_helper(1, 0, [], 0, n)
+        return res
+                    
                     
