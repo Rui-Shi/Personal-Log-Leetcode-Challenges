@@ -45,28 +45,31 @@ class Solution:
 
 
 
-# without using sort:
+from typing import List
+
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        # Initialize pointers for nums1, nums2, and the end of nums1
+        # Pointer for the last element of nums1
         p1 = m - 1
+        # Pointer for the last element of nums2
         p2 = n - 1
-        p = m + n - 1
-        
-        while p1 >= 0 and p2 >= 0:
-            if nums1[p1] >= nums2[p2]:
-                nums1[p] = nums1[p1]
+        # Pointer for the last position in the merged array (end of nums1)
+        k = m + n - 1
+
+        # Iterate while there are still elements in nums2 to merge
+        while p2 >= 0:
+            # If p1 is valid and its value is greater than p2's value
+            if p1 >= 0 and nums1[p1] > nums2[p2]:
+                # Place the larger element (from nums1) at the end
+                nums1[k] = nums1[p1]
                 p1 -= 1
-            
             else:
-                nums1[p] = nums2[p2]
+                # Place the larger element (from nums2) or if p1 is out of bounds
+                nums1[k] = nums2[p2]
                 p2 -= 1
-            p -= 1
-        
-        if p2 > 0:
-            nums1[:p2+1] = nums2[:p2 + 1]
-        
-                     
+            # Move to the next position to fill
+            k -= 1
+                

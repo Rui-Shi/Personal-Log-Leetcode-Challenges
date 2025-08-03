@@ -48,3 +48,21 @@ class Solution:
         # If we exit the loop, it means all digits were 9
         # We need to add a new digit at the beginning
         return [1] + digits
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        n = len(digits)
+        add_one = False
+        
+        for i in range(n - 1, -1, -1):
+            if digits[i] < 9:
+                digits[i] += 1
+                add_one = False
+                break
+            
+            else:
+                digits[i] = 0
+                add_one = True
+        
+        return [1] + digits if add_one else digits

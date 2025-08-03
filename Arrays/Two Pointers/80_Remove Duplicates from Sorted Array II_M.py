@@ -36,6 +36,9 @@
 # Explanation: Your function should return k = 7, with the first seven elements of nums being 0, 0, 1, 1, 2, 3 and 3 respectively.
 # It does not matter what you leave beyond the returned k (hence they are underscores).
 
+from typing import List
+
+
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         k = 0
@@ -54,16 +57,23 @@ class Solution:
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
+        count = 1
         k = 1
-        count = 0
         for i in range(1, len(nums)):
-            if nums[i] == nums[i - 1]:
+            if nums[i - 1] == nums[i]:
                 count += 1
-            else:
-                count = 0
             
-            if count < 2:
+            else:
+                count = 1
+            
+            if count <= 2:
                 nums[k] = nums[i]
                 k += 1
-        return k     
+        return k
+
+num1_test = [1, 1, 1, 1, 2, 2, 3]
+s = Solution()
+s.removeDuplicates(num1_test)
+print(num1_test)
+        
          

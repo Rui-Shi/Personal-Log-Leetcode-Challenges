@@ -25,7 +25,7 @@
 
 class Solution:
     def reverseWords(self, s: str) -> str:
-        words = s.split()
+        words = s.split() # breaks up a string wherever it finds whitespace
         
         start = 0
         end = len(words) - 1
@@ -36,16 +36,4 @@ class Solution:
             end -= 1
         
         return ' '.join(words)
-
-
-class Solution:
-    def reverseWords(self, s: str) -> str:
-        words_reverse = s[::-1].split() # When there are multiple spaces, Python's .split() method treats them as a single delimiter by default.
-        words = []
-        
-        for word_reverse in words_reverse:
-            words.append(word_reverse[::-1])
-        
-        return ' '.join(words)
-        
         

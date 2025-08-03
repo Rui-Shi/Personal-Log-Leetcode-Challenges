@@ -42,5 +42,22 @@ class Solution:
         
         else:
             return False
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s_clean = ''
+        s = s.lower()
+        
+        for char in s:
+            if char.isalnum():
+                s_clean += char
+        
+        if s_clean == s_clean[::-1]:
+            return True
+        
+        else:
+            return False
+
+
         
         
