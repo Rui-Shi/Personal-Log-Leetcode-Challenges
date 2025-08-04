@@ -56,3 +56,16 @@ my_dict = {"a": 1, "b": 2, "c": 3}
 
 for key, value in my_dict.items():
     print(f"Key: {key}, Value: {value}")
+
+import collections
+
+class Solution:
+    def singleNumber(self, nums):
+        counts = collections.defaultdict(int)
+        
+        for num in nums:
+            counts[num] += 1
+        
+        for num, count in counts.items():
+            if count == 1:
+                return num

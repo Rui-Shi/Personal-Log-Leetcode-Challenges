@@ -47,7 +47,7 @@ class Solution:
         mapping = {}
         s_map = ''
         
-        for i, char in s:
+        for i, char in enumerate(s):
             if char not in mapping:
                 if t[i] not in mapping.values():
                     mapping[char] = t[i]
@@ -55,3 +55,16 @@ class Solution:
                     return False
             s_map += mapping[char]
         return s_map == t
+
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        mapping = {}
+        
+        for i, char in enumerate(s):
+            if char not in mapping:
+                if t[i] not in mapping.values():
+                    mapping[char] = t[i]
+                else:
+                    return False
+        return True

@@ -76,10 +76,10 @@ class Solution:
         dp = [True] + [False] * len(s)
         
         for i in range(1, len(s) + 1):
-            for w in wordDict:
-                start = i - len(w)
-                if start >= 0 and dp[start] and s[start:i] == w:
+            for word in wordDict:
+                start = i - len(word)
+                if start >= 0 and dp[start] == True and s[start:i] == word:
                     dp[i] = True
-                    
                     break
+        
         return dp[-1]

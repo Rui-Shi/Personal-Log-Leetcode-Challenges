@@ -78,4 +78,4 @@ class Solution:
             else:
                 map[str_sorted] = [str]
         
-        return list(map.values())
+        return list(map.values()) # output the value of dict and convert it to list.

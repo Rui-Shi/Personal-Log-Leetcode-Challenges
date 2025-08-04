@@ -49,3 +49,17 @@ class Solution:
 s = Solution()
 test_case = [1, 2, 3, 4, 4]
 print(s.majorityElement(test_case))
+
+
+import collections
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        counts = collections.defaultdict(int)
+        
+        bound = len(nums) // 2
+        
+        for num in nums:
+            counts[num] += 1
+            if counts[num] > bound:
+                return num
+        

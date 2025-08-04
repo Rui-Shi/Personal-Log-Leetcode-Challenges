@@ -54,5 +54,24 @@ class Solution:
         # Pick the minimum out of these two subtrees and return this value after adding 1 to it...
         return min(left_depth, right_depth) + 1
         
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
         
+        if not root.left and not root.right:
+            return 1
+        
+        # Initialize the depth of two subtrees...
+        left_depth = self.minDepth(root.left)
+        right_depth = self.minDepth(root.right)
+        
+        if root.left is None:
+            return 1 + right_depth
+        
+        if root.right is None:
+            return 1 + left_depth
+        
+        else:
+            return 1 + min(left_depth, right_depth)     
         

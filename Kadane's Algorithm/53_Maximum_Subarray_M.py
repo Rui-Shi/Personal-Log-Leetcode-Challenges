@@ -46,7 +46,8 @@ class Solution:
                 max_ending_here = 0
                 
         return max_so_far
-
+# Kadane's Algorithm is a dynamic programming technique 
+# used to find the maximum possible sum of a contiguous subarray within a one-dimensional array of numbers.
 class Solution:
     def maxSubArray(self, nums: list[int]) -> int:
         max_ending_here = 0

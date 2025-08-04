@@ -64,36 +64,20 @@ class Solution:  # Use 'class Solution:' instead of 'def Solution:'
 
 
 
-class Solution(object):
-    def isBalanced(self, root):
-        """
-        Determines if a binary tree is height-balanced.
-
-        Args:
-          root: The root of the binary tree.
-
-        Returns:
-          True if the tree is height-balanced, False otherwise.
-        """
-        return (self.Height(root) >= 0)  # Tree is balanced if Height() doesn't return -1
-
-    def Height(self, root):
-        """
-        Calculates the height of the tree and checks for balance.
-
-        Args:
-          root: The root of the current subtree.
-
-        Returns:
-          The height of the subtree if balanced, -1 otherwise.
-        """
-        if root is None:
-            return 0  # Base case: empty tree has height 0
-
-        leftheight, rightheight = self.Height(root.left), self.Height(root.right)  # Recursively get heights of subtrees
-
-        # Check for imbalance in subtrees or height difference > 1
-        if leftheight < 0 or rightheight < 0 or abs(leftheight - rightheight) > 1:
-            return -1  # Indicate imbalance
-
-        return max(leftheight, rightheight) + 1  # Return height of current subtree
+class Solution:
+    def height_check(self, Node):
+        if not Node:
+            return 0      
+        else:
+            return 1 + max(self.height(Node.left), self.height(Node.right))
+        
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        left_height = self.height(root.left)
+        right_height = self.height(root.right)
+        
+        if abs(left_height - right_height) > 1:
+            return False
+        
+        else:
+            return self.isBalanced(root.left) and self.isBalanced(root.right)
+        
