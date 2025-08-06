@@ -20,21 +20,20 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         left = 0
-        right = len(nums)
-        
-        if nums[left] >= target: 
-            return 0 # if the target is small or equal to the smallest number of the list
+        right = len(nums) - 1
         
         while left < right:
             mid = (left + right) // 2
             
-            if nums[mid] >= target:
-                right = mid
+            if nums[mid] <= target:
+                left = mid
             
             else:
-                left = mid + 1
-            
-        return left
+                right = mid - 1
+        
+        return right
+        
+        
         
         
             

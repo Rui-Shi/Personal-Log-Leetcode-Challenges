@@ -35,6 +35,9 @@ class Solution:
       
     return min_heap[0]
 
+# Time complexity O(nlogk)
+# heapq.heappush(min_heap, num): O(logk)
+# space complexity O(K)
 
 import heapq
 
@@ -44,10 +47,9 @@ class Solution:
     
     for num in nums:
       heapq.heappush(min_heap, num)
-      
       if len(min_heap) > k:
         heapq.heappop(min_heap)
     
     return min_heap[0]
-  
+    
         

@@ -52,7 +52,36 @@ class Solution:
         
         return res
             
-            
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        
+        if len(intervals) == 0:
+            return []
+        
+        if len(intervals) == 1:
+            return intervals
+        
+        res = []
+        
+        sorted_intervals = sorted(intervals, key=lambda x: x[0])
+        
+        l = sorted_intervals[0][0]
+        r = sorted_intervals[0][1]
+        
+        for i in range(1, len(intervals)):
+            if r < sorted_intervals[i][0]:
+                res.append([l, r])
+                l = sorted_intervals[i][0]
+                r = sorted_intervals[i][1]
+                
+            else:
+                r = max(sorted_intervals[i][1], r)
+        
+        res.append([l, r])
+        
+        return res
+        
+        
             
         
         
