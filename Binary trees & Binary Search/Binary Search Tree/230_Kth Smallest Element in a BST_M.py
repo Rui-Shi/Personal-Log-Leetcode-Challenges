@@ -26,6 +26,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# do in order traveral first
+# Time and Space complexity O(N), where N is the number off nodes
 class Solution:
     def inorder_helper(self, root, res):
         
