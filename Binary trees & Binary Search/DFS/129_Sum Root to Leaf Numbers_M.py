@@ -74,25 +74,29 @@ class Solution:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# The time complexity is O(N * H) 
+# and the space complexity is O(H) recursions with deep H
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         path_list = []
         
+        if not root:
+            return path_list
+        
         def dfs_helper(node, path_cur):
-            if not node:
-                if path_cur:
-                    path_list.append(int(path_cur))
-            
-            else:
-                if not node.left and not node.right:
-                    path_list.append(int(path_cur + str(node.val)))
+            if not node.left and not node.right:
+                path_list.append(int(path_cur + str(node.val)))
                 
-                else:
-                    if node.left:
-                        dfs_helper(node.left, path_cur + str(node.val))
-                    
-                    if node.right:
-                        dfs_helper(node.right, path_cur + str(node.val))
+            elif node.left and node.right:
+                dfs_helper(node.left, path_cur + str(node.val))
+                dfs_helper(node.right, path_cur + str(node.val))
+            
+            elif not node.left and node.right:
+                dfs_helper(node.right, path_cur + str(node.val))
+                
+            else:
+                dfs_helper(node.left, path_cur + str(node.val))
         
         dfs_helper(root, "")
         return sum(path_list)

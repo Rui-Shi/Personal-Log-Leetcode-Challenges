@@ -33,3 +33,23 @@ class Solution:
                 if str[i] != letter: return str[0:i]
             i += 1
         return strs[0][0:length_min] # Handle cases where the loop finishes
+
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        len_min = min(map(len, strs))
+        if len_min == 0:
+            return ""
+        
+        i = 0
+        while i <= len_min:
+            char = strs[0][i]
+            for str in strs:
+                if str[0] != char:
+                    return str[0:i]
+            
+            i += 1
+        
+        return str[0][0:len_min]
+

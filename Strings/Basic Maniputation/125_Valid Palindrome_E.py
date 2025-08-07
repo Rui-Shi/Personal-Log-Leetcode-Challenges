@@ -39,4 +39,20 @@ class Solution:
         else:
             return False
 
+
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
         
+        cleaned_text = ''
+        for char in s:
+            if char.isalnum():
+                cleaned_text += char
+        
+        cleaned_text = cleaned_text.lower()
+        
+        if cleaned_text == cleaned_text[::-1]:
+            return True
+        
+        else:
+            return False

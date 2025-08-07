@@ -53,7 +53,8 @@ class Solution:
 
         return None  # Should not reach here for a valid BST and p, q in the BST
 
-
+# Time and space complexity O(H) and O(1)
+# Where H is the height of the tree.
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if p.val > q.val:

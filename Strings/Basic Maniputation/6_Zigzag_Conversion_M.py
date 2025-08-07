@@ -96,14 +96,15 @@ class Solution:
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        if numRows <= 1 or numRows >= len(s):
+        if numRows == 1 or len(s) <= numRows:
             return s
         
         rows = [''] * numRows
-        zig_cycle = numRows * 2 - 2
         
-        for i, char in enumerate(s):
-            reminder = i % zig_cycle
+        zig_cycle = 2 * numRows - 2
+        
+        for index, char in enumerate(s):
+            reminder = index % zig_cycle
             
             if reminder < numRows:
                 row_index = reminder
@@ -111,7 +112,8 @@ class Solution:
             else:
                 row_index = zig_cycle - reminder
             
-            rows[row_index] += char
+            rows[row_index] += s[index]
         
-        return ''.join(rows)
-                
+        # Join all the row strings together for the final result
+        return "".join(rows)    
+            

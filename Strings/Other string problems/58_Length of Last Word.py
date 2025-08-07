@@ -52,3 +52,22 @@ class Solution:
 
 s = Solution()
 print(s.lengthOfLastWord("Hello World   "))
+
+
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        s_inverse = s[::-1]
+        
+        i = 0
+        count = 0
+        s_inverse = s_inverse.lstrip()
+        
+        while i <= len(s_inverse):
+            if s_inverse[i].isalpha():
+                count += 1
+                i += 1
+            
+            else:
+                break
+        
+        return count

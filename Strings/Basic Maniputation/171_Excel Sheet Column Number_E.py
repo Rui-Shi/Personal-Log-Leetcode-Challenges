@@ -39,12 +39,13 @@ class Solution:
                  'N': 14, 'O': 15, 'P': 16, 'Q': 17, 'R': 18, 'S': 19, 
                  'T': 20, 'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25, 'Z': 26}
         columnTitle_inv = columnTitle[::-1]
-        result = 0
-        for i in range(len(columnTitle)):
-            letter = columnTitle_inv[i]
-            num = mapping[letter]*(26**i)
-            result += num
-        return result
+        res = 0
+        i = 0
+        for char in columnTitle_inv:
+            res += mapping[char] * (26 ** i)
+            i += 1
+        
+        return res
             
             
             

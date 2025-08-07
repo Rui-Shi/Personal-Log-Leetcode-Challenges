@@ -32,17 +32,25 @@
 
 class Solution:
     def convertToTitle(self, columnNumber: int) -> str:
-        mapping = {1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F', 7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L', 13: 'M', 14: 'N', 15: 'O', 16: 'P', 17: 'Q', 18: 'R', 19: 'S', 20: 'T', 21: 'U', 22: 'V', 23: 'W', 24: 'X', 25: 'Y', 26: 'Z'}
+        mapping = {1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F', 7: 'G', \
+                   8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L', 13: 'M', \
+                   14: 'N', 15: 'O', 16: 'P', 17: 'Q', 18: 'R', 19: 'S', \
+                   20: 'T', 21: 'U', 22: 'V', 23: 'W', 24: 'X', 25: 'Y', 26: 'Z'}
         
-        remain = columnNumber
-        letters = ''
-        while remain != 0:
-            num = (remain-1)%26
-            remain = (remain-1)//26
-            num += 1
-            letter = mapping[num]
-            letters += letter
-        return letters[::-1]
+        res = ''
+        reminder = columnNumber
+        while reminder > 0:
+            num = (reminder - 1) % 26
+            reminder = (reminder - 1) // 26
+            res += mapping[num + 1]
+        
+        return res[::-1]
+            
+
+# The reminder - 1 is needed because standard mathematical operations like modulo (%) 
+# and integer division (//) work with a 0-indexed system, but Excel's column titles are a 1-indexed system.
+
+# Subtracting 1 effectively converts the 1-based number into a 0-based one, allowing the math to work correctly.
             
             
             

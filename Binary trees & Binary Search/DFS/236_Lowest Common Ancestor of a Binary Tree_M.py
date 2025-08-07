@@ -62,6 +62,7 @@ class Solution:
         else:
             return left_result or right_result
 
+# Time and Space Complexity O(N) and O(H) recursions with deep H
 class Solution:
     def lowestCommonAncestor(self,
                            root: Optional[TreeNode],

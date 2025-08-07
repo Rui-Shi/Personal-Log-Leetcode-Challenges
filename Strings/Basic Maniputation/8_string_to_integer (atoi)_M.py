@@ -86,46 +86,57 @@
 
 class Solution:
     def myAtoi(self, s: str) -> int:
-        # 1. Read in and ignore any leading whitespace.
-        s = s.lstrip() 
-        # By default, with no arguments, s.lstrip() removes all leading whitespace characters (spaces, tabs \t, newlines \n).
+        # 1. strip all leading spaces:
+        s = s.lstrip()
         
-        # If the string is empty after stripping whitespace, return 0.
-        if not s:
+        if len(s) == 0:
             return 0
         
-        # 2. Check for a sign ('-' or '+').
-        index = 0
-        sign = 1 # Assume positive
-        if s[0] == '-':
-            sign = -1
-            index += 1
-        elif s[0] == '+':
-            index += 1
-            
-        # 3. Read in the digits until a non-digit is found.
-        num_str = ""
-        while index < len(s) and s[index].isdigit():
-            num_str += s[index]
-            index += 1
-            
-        # If no digits were read, the number is 0.
-        if not num_str:
-            return 0
-            
-        # 4. Convert the digits to an integer.
-        result = int(num_str) * sign
+        # 2. determine the sign:
+        start = 0
+        negative = False
         
-        # 5. Clamp the integer to the 32-bit signed integer range.
+        if s[start] == "-":
+            negative = not negative
+            start += 1
+        
+        elif s[start] == "+":
+            start += 1
+        
+        else:
+            pass
+        
+        # 3. Conversion:
+        digits = ''
+        for i in range(start, len(s)):
+            if s[i].isdigit(): # check if a char is digit or not
+                digits += s[i]
+            
+            else:
+                break
+            
+        if not digits:
+            return 0
+        
+        if negative:
+            res = -1 * int(digits)
+        else:
+            res = int(digits)
+            
+        # 4. rounding
         INT_MIN = -2**31
         INT_MAX = 2**31 - 1
         
-        if result < INT_MIN:
+        if res < INT_MIN:
             return INT_MIN
-        if result > INT_MAX:
+        if res > INT_MAX:
             return INT_MAX
             
-        return result
+        return res
+            
+        
+        
+        
         
         
             

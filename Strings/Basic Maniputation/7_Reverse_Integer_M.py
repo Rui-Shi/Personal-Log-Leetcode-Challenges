@@ -24,19 +24,30 @@
 
 class Solution:
     def reverse(self, x: int) -> int:
-        
         bound = 2 ** 31
+        
         x_str = str(x)
-        start = 0
+        
+        negative = False
+        
         if x_str[0] == "-":
-            start = 1
-            
-        if start == 0:
-            X_inverse = int(x_str[start:][::-1])
+            negative = not negative
+        
+        if negative:
+            x_inverse = -1 * int(x_str[1:][::-1])
+        
         else:
-            X_inverse = int("-" + x_str[start:][::-1])
+            x_inverse = int(x_str[::-1])
         
-        if X_inverse < -1 * bound or X_inverse >= bound:
+        if x_inverse >= -1 * bound and x_inverse < bound:
+            return x_inverse
+        
+        else:
             return 0
+
+# Time and Space complexity: O(n)
+# Str is immutable 
         
-        return X_inverse
+        
+        
+            
