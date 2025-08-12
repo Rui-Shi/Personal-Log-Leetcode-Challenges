@@ -43,12 +43,15 @@ class Solution:
         else:
             return False
 
+# Time: O(n)
+# Space: O(n) it create a new string O(n)
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        s_clean = ''
-        s = s.lower()
+        s_clean = ""
         
-        for char in s:
+        s = s.lower() # change all to the lower case: O(n)
+        
+        for char in s: # O(n)
             if char.isalnum():
                 s_clean += char
         

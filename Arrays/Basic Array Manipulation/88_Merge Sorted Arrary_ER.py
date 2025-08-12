@@ -44,6 +44,8 @@ class Solution:
         nums1.sort()
 
 
+# Time complexity: O(m + n)
+# Space complexity O(1)
 
 from typing import List
 
@@ -52,24 +54,24 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        # Pointer for the last element of nums1
-        p1 = m - 1
-        # Pointer for the last element of nums2
-        p2 = n - 1
-        # Pointer for the last position in the merged array (end of nums1)
-        k = m + n - 1
-
-        # Iterate while there are still elements in nums2 to merge
-        while p2 >= 0:
-            # If p1 is valid and its value is greater than p2's value
-            if p1 >= 0 and nums1[p1] > nums2[p2]:
-                # Place the larger element (from nums1) at the end
-                nums1[k] = nums1[p1]
-                p1 -= 1
+        
+        index_1 = m - 1
+        index_2 = n - 1
+        index = m + n -1
+        
+        while index_1 >= 0 and index_2 >= 0:
+            if nums1[index_1] <= nums2[index_2]:
+                nums1[index] = nums2[index_2]
+                index_2 -= 1
+            
             else:
-                # Place the larger element (from nums2) or if p1 is out of bounds
-                nums1[k] = nums2[p2]
-                p2 -= 1
-            # Move to the next position to fill
-            k -= 1
+                nums1[index] = nums1[index_1]
+                index_1 -= 1
+            
+            index -= 1
+            
+        if index_2 >= 0:
+            nums1[:index_2 + 1] = nums2[:index_2 + 1]
+        
+        
                 

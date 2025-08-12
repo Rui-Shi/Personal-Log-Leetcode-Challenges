@@ -41,6 +41,8 @@ class Solution:
         nums[:] = nums_rotate
         
 # Better one
+# Time complexity: O(n) ]
+# Space complexity: O()
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """
@@ -48,8 +50,9 @@ class Solution:
         """
         n = len(nums)
         k = k % n # handle k > n
-        nums[:] = nums[-k:] + nums[:-k]  # In-place modification using slice assignment "nums=..." does not work!!!
-        
+        nums[:] = nums[-k:] + nums[:-k]  # O(n) In-place modification using slice assignment "nums=..." does not work!!!
+        # the space complexity of nums[-k:] + nums[:-k] is O(n)
+         
 # nums = ... (incorrect): This simply changes what the local variable nums (inside the function) points to. 
 # It makes nums point to the same list object that nums_rotate points to. 
 # The original list object that was passed into the function remains unchanged. 

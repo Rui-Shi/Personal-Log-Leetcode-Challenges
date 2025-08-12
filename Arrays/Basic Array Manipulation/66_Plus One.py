@@ -49,20 +49,18 @@ class Solution:
         # We need to add a new digit at the beginning
         return [1] + digits
 
-
+# Time complexity: O(n)
+# Space complexity: O(1) for in place modification, O(n) for [1] + digits
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         n = len(digits)
-        add_one = False
-        
         for i in range(n - 1, -1, -1):
             if digits[i] < 9:
                 digits[i] += 1
-                add_one = False
-                break
+                return digits
             
             else:
                 digits[i] = 0
-                add_one = True
-        
-        return [1] + digits if add_one else digits
+            
+        return [1] + digits
+            

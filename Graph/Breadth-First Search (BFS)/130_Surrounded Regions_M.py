@@ -36,6 +36,7 @@
 from typing import List
 from collections import deque  # Using deque for efficient queue operations
 
+# time and space complexity are O(n * m)
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
         
