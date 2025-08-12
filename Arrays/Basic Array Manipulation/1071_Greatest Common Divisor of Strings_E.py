@@ -23,9 +23,10 @@
 # 1 <= str1.length, str2.length <= 1000
 # str1 and str2 consist of English uppercase letters.
 
+# Time and Space: O(n + m)
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
-        if str1 + str2 != str2 + str1:
+        if str1 + str2 != str2 + str1: # check if str1 and str2 has gcd O(n + m)
             return ""
         
         # algo to find gcd

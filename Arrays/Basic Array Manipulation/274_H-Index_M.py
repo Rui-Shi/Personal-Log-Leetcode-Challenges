@@ -26,7 +26,9 @@ class Solution:
                 return i - 1
             
             i += 1
-            
+
+# Time: O(nlogn)
+# Space: O(1)         
 # a better one:
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
