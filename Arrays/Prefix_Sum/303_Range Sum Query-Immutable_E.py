@@ -90,6 +90,7 @@ class NumArray:
             return self.prefix[right] - self.prefix[left - 1]
 
 
+# Time and Spacee Complexity: O(n)
 class NumArray:
 
     def __init__(self, nums: List[int]):

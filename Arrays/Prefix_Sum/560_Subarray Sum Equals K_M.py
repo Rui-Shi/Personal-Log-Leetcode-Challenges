@@ -42,16 +42,24 @@ from collections import defaultdict
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        cum_sum = 0
-        sum_freq = defaultdict(int) # will never raise a key error, when key doesn't exist, return 0
+        
+        sum_freq = defaultdict(int)
         sum_freq[0] = 1
-        count = 0
+        cum_sum = 0
+        
+        freq = 0
         
         for num in nums:
             cum_sum += num
-            if cum_sum - k in sum_freq:
-                count += sum_freq[cum_sum - k]
             sum_freq[cum_sum] += 1
+            
+            complement = cum_sum - k
+            if complement in sum_freq:
+                freq += sum_freq[complement]
+            
+        return freq
+
+            
+            
         
-        return count
+        

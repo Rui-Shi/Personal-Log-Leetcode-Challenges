@@ -51,5 +51,8 @@ SELECT name
 FROM customer
 WHERE referee_id != 2 OR referee_id IS NULL; 
 
-# this is how to check a NULL value in SQL
+-- referee_id != 2 does NOT include rows where referee_id is NULL, because NULL 
+-- compared to any value yields UNKNOWN (which is treated as false in WHERE).
+
+-- That’s why you need OR referee_id IS NULL to include those rows.
 

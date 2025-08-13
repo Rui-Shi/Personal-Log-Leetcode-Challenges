@@ -45,4 +45,4 @@
 
 SELECT tweet_id
 FROM Tweets
-WHERE LENGTH(content) > 15;
+WHERE LENGTH(content) > 15; -- How to find the length of strings in SQL
