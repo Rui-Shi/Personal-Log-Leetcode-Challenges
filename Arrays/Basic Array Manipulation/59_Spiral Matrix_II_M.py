@@ -26,33 +26,32 @@ class Solution:
         num = 1
         
         while left <= right and top <= bottom:
-            # Traverse from left to right
             for col in range(left, right + 1):
                 matrix[top][col] = num
                 num += 1
+            
             top += 1
             
-            # Traverse downwards
             for row in range(top, bottom + 1):
-                matrix[row][right] = num
+                matrix[right][row] = num
                 num += 1
+            
             right -= 1
             
             if top <= bottom:
-                # Traverse from right to left
                 for col in range(right, left - 1, -1):
                     matrix[bottom][col] = num
                     num += 1
-                bottom -= 1
             
-            if left <= right:
-                # Traverse upwards
+            if left <= right :
                 for row in range(bottom, top - 1, -1):
                     matrix[row][left] = num
                     num += 1
                 left += 1
-        
-        return matrix
+            
+            return matrix
+                
+                    
 
             
             
