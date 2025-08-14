@@ -3,7 +3,10 @@
 # For example, "ACGAATTCCG" is a DNA sequence.
 # When studying DNA, it is useful to identify repeated sequences within the DNA.
 
-# Given a string s that represents a DNA sequence, return all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in any order.
+# Given a string s that represents a DNA sequence, 
+# return all the 10-letter-long sequences (substrings) 
+# that occur more than once in a DNA molecule. 
+# You may return the answer in any order.
 
  
 
@@ -16,6 +19,8 @@
 # Input: s = "AAAAAAAAAAAAA"
 # Output: ["AAAAAAAAAA"]
 
+# Time: O(n)
+# Space: O(n)
 import collections
 class Solution:
     def findRepeatedDnaSequences(self, s: str) -> List[str]:
