@@ -46,7 +46,10 @@
 -- In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
 
 SELECT w1.id
-FROM Weather w1, Weather w2
-WHERE DATEDIFF(W1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature;
+FROM Weather w1
+INNER JOIN Weather w2
+ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
+WHERE w1.temperature > w2.temperature;
 
--- This is how to compute diff between two variables: DATEDIFF
+
+-- This is how to compute diff between two date: DATEDIFF
