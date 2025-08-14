@@ -75,8 +75,8 @@
 -- As we can see, users with IDs 30 and 96 visited the mall one time without making any transactions. Also, user 54 visited the mall twice and did not make any transactions.
 
 SELECT v.customer_id, COUNT(v.visit_id) AS count_no_trans
-FROM Visits v
+FROM visits v
 LEFT JOIN Transactions t
 ON v.visit_id = t.visit_id
-WHERE t.transaction_id IS NULL
-GROUP BY customer_id
+WHERE t.transaction_id IS NUll -- the right way to check the null value
+GROUP BY v.customer_id;

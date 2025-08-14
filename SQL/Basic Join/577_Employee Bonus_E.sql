@@ -65,8 +65,8 @@
 
 # Write your MySQL query statement below
 
-SELECT Employee.name, Bonus.bonus
-FROM Employee e
-LEFT JOIN Bonus belongs
+SELECT e.name, b.bonus
+FROM employee e
+LEFT JOIN Bonus b
 ON e.empId = b.empId
-WHERE b.bonus is NULL or b.bonus < 1000
+WHERE b.bonus < 1000 or b.bonus IS NULL;
