@@ -1,6 +1,7 @@
 # Given a string s, reverse only all the vowels in the string and return it.
 
-# The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+# The vowels are 'a', 'e', 'i', 'o', and 'u', 
+# and they can appear in both lower and upper cases, more than once.
 
  
 
@@ -20,6 +21,8 @@
 
 # Output: "leotcede"
 
+# time: O(n)
+# Space: O(n)
 class Solution(object):
     def reverseVowels(self, s):
         # Convert the input string to a character array.

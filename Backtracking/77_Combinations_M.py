@@ -52,17 +52,16 @@ class Solution:
 # Time Complexity O(k * (n, k))
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-                    
         res = []
+        def backtrack(start, cur_comb):
+            if len(cur_comb) == k:
+                res.append(cur_comb[:])
+            
+            else:
+                for candidate in range(start, n + 1):
+                    cur_comb.append(candidate)
+                    backtrack(candidate + 1, cur_comb)
+                    cur_comb.pop()
         
-        def backtrack(start, current_combination):
-            if len(current_combination) == k:
-                res.append(list(current_combination))
-        
-            for i in range(start, n + 1):
-                current_combination.append(i)
-                backtrack(i + 1, current_combination)
-                current_combination.pop()  # Backtrack
-        
-        backtrack(1, [])
+        backtrack(0, [])
         return res

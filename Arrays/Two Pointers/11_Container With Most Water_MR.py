@@ -88,7 +88,8 @@ if __name__ == '__main__':
     height4 = [1, 2, 1]
     print(f"Max area for {height4}: {solution.maxArea(height4)}") # Output: 2
 
-
+# Space: O(n)
+# Time: O(1)
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         left = 0

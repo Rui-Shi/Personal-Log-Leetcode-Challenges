@@ -38,7 +38,8 @@
 
 from typing import List
 
-
+# Time O(n)
+# Space O(1)
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         k = 0

@@ -1,4 +1,5 @@
-# Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+# Given an integer array nums, 
+# move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
 # Note that you must do this in-place without making a copy of the array.
 
@@ -19,6 +20,7 @@
 # 1 <= nums.length <= 104
 # -231 <= nums[i] <= 231 - 1
 
+# O(n) and O(1)
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
         """
@@ -44,7 +46,6 @@ class Solution:
 
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
-        read_index = 0
         write_index = 0
         
         n = len(nums)

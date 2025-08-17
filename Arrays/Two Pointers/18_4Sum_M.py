@@ -1,4 +1,5 @@
-# Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+# Given an array nums of n integers, 
+# return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
 
 # 0 <= a, b, c, d < n
 # a, b, c, and d are distinct.
@@ -24,6 +25,7 @@
 # -109 <= target <= 109
 
 # Time complexity O(N^3)
+# Space Complexity O(n) list.sort()
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         res = []

@@ -56,7 +56,8 @@ class Solution:
             i += 1  # Always increment i to move to the next element
         return k
 
-
+# O(n)
+# O(1)
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
         k = 0

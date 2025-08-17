@@ -39,6 +39,8 @@ from typing import List
 
 from typing import List
 
+# Time O(n^2)
+# Space O(n^2)
 class Solution:
   def threeSum(self, nums: List[int]) -> List[List[int]]:
     result = []  # Stores unique triplets.
@@ -62,8 +64,8 @@ class Solution:
 
 
 # better solution 
-# Sorting: O(nlogn):
-# Finding the triblet: O(n^2)
+# Time: sorting O(nlogn), loop O(n^2)
+# Space: O(1) no additional space is needed other than the result
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         result = []
