@@ -1,4 +1,5 @@
-# Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
+# Given a collection of numbers, nums, 
+# that might contain duplicates, return all possible unique permutations in any order.
 
  
 
@@ -31,7 +32,7 @@ class Solution:
             freq_dic[num] += 1 # space: O(n)
             
         res = []
-        def backtrack(cur_comb, count):  # cur_comb space: O(n)
+        def backtrack(cur_comb, freq_dic):  # cur_comb space: O(n)
             
             if len(cur_comb) == len(nums):
                 res.append(cur_comb[:])

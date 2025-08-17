@@ -1,4 +1,5 @@
-# Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
+# Given a collection of candidate numbers (candidates) and a target number (target), 
+# find all unique combinations in candidates where the candidate numbers sum to target.
 
 # Each number in candidates may only be used once in the combination.
 
@@ -56,7 +57,8 @@ class Solution:
     backtrack(0, [], 0)
     return res
 
-# Time complexity O(2^N)
+# Time complexity O(N * 2^N)
+# Space Auxiliary: O(N)
 # a better one
 from typing import List
 

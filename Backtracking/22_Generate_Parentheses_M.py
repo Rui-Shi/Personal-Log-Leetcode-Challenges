@@ -37,7 +37,8 @@ class Solution:
         backtrack_helper("", 0, 0, n)
         return list(res)
 
-
+# Time: O(n * 2^n)
+# Space: O(n)
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []

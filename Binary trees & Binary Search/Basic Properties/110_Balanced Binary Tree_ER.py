@@ -63,7 +63,8 @@ class Solution:  # Use 'class Solution:' instead of 'def Solution:'
         return check(root)[1]  # Return the second element of the tuple (is_balanced)
 
 
-
+# Time: O(n)
+# Space:O(h)
 class Solution:
     def height_check(self, Node):
         if not Node:

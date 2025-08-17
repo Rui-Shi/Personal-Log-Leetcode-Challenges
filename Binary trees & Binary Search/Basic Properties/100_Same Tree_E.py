@@ -1,6 +1,8 @@
-# Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+# Given the roots of two binary trees p and q, 
+# write a function to check if they are the same or not.
 
-# Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+# Two binary trees are considered the same if they are structurally identical, 
+# and the nodes have the same value.
 
  
 
@@ -49,7 +51,10 @@ class Solution:
 
 
 
-        
+# Time: O(N) N: number of node
+# Space: O(h) h: height of the tree
+# This algorithm doesn’t create extra data structures (no lists, dicts, etc.). 
+# The only space overhead comes from the function call stack used during recursion.
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if not p and not q:

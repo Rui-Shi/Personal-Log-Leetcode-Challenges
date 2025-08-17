@@ -56,6 +56,10 @@ class Solution:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# Time: O(n)
+# Space: O(h) the only space used is the recursion call stack.
+# Space complexity is about the maximum simultaneous memory usage.
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:

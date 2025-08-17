@@ -28,7 +28,9 @@
 -- Each row of this table indicates the date, units, and product_id of each product sold. 
 --  
 
--- Write a solution to find the average selling price for each product. average_price should be rounded to 2 decimal places. If a product does not have any sold units, its average selling price is assumed to be 0.
+-- Write a solution to find the average selling price for each product. average_price 
+-- should be rounded to 2 decimal places. If a product does not have any sold units, 
+--its average selling price is assumed to be 0.
 
 -- Return the result table in any order.
 
@@ -76,5 +78,5 @@ ifnull(ROUND(SUM(p.price * u.units) / sum(u.units), 2), 0) AS average_price
 FROM Prices p
 LEFT JOIN UnitsSold u
 ON u.product_id = p.product_id
-AND u.purchase_date BETWEEN p.start_date AND p.end_date
+AND u.purchase_date BETWEEN p.start_date AND p.end_date -- between two date
 GROUP BY p.product_id

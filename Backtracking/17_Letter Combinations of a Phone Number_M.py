@@ -111,7 +111,9 @@ class Solution:
 
 # Time complexity:
 # Let N be the length of the input digits string.
-# O(N * 4^N)
+# Time: O(N * 4^N) depth: N, combinations: 4^N
+# Auxiliary space: O(N)
+# Total Space with result: O(N*4N)
           
               
                 

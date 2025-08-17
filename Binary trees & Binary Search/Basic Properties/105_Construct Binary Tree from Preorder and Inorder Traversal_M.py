@@ -37,7 +37,8 @@ class Solution:
         
         return root
 
-
+# Time: O(n^2)
+# Space: O(n^2)
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not preorder:
@@ -45,12 +46,21 @@ class Solution:
         
         root_val = preorder[0]
         root = TreeNode(root_val)
-        split_index = inorder.index(root_val) # get the index of the spliting point
+        split_index = inorder.index(root_val) # get the index of the spliting point time: O(n)
         
-        root.left = self.buildTree(preorder[1:(1 + split_index)], inorder[0:split_index])
+        root.left = self.buildTree(preorder[1:(1 + split_index)], inorder[0:split_index]) # Slicing O(n)
         root.right = self.buildTree(preorder[(1 + split_index):], inorder[(1 + split_index):])
         
         return root
+
+# Recursion Stack Depth: The depth of recursive calls is equal to the height of the tree, H. 
+# In the worst case of a skewed tree, H=N, so the stack itself requires O(N) space.
+
+# Storage for Slices: This is the main contributor. At each level of recursion, 
+# new lists are created and stored in memory for the next call. In the worst case of a skewed tree, 
+# you have recursive calls with lists of size N, N−1, N−2, ..., down to 1. The total space consumed by 
+# all these stored slices across the entire call stack is also an arithmetic series, resulting in O(N^2) space
+
         
         
         

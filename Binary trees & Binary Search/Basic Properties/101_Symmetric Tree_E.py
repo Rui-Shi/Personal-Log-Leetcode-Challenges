@@ -45,7 +45,8 @@ class Solution:
         # Check if the tree is symmetric by calling the isMirror function on the left and right subtrees of the root
         return self.isMirror(root.left, root.right)
 
-
+# Time: O(n)
+# Space: O(h)
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         def isMirror(left, right):
