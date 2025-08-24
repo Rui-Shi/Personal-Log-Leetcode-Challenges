@@ -26,6 +26,8 @@
 # -104 <= Node.val <= 104
 
 # Definition for a binary tree node.
+# Time: O(n)
+# Space:O(h)
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -63,7 +65,7 @@ class Solution:  # Use 'class Solution:' instead of 'def Solution:'
         return check(root)[1]  # Return the second element of the tuple (is_balanced)
 
 
-# Time: O(n)
+# Time: O(n ^ 2)
 # Space:O(h)
 class Solution:
     def height_check(self, Node):
@@ -81,4 +83,30 @@ class Solution:
         
         else:
             return self.isBalanced(root.left) and self.isBalanced(root.right)
+
+
+class Solution:
+    def height_check(self, Node):
+        if not Node:
+            return 0
         
+        else:
+            left_height = self.height_check(Node.left)
+            right_height = self.height_check(Node.right)
+            return 1 + max(left_height, right_height)
+    
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+        
+        else:
+            left_height = self.height_check(root.left)
+            right_height = self.height_check(root.right)
+            
+            if abs(left_height - right_height) > 1:
+                return False
+            
+            else:
+                return self.isBalanced(root.left) and self.isBalanced(root.right)
+            
+            

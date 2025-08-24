@@ -28,6 +28,8 @@
 #         self.left = left
 #         self.right = right
 
+# Time O(N)
+# Space O(W) W: the max width of the tree
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         
@@ -54,6 +56,32 @@ class Solution:
         bfs_helper([root])
         
         return res
-                        
+
+import collections
+class Solution:
+    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+        if not root:
+            return []
+        
+        res = []
+        def bfs_helper(Node_List):
+            q = collections.deque(Node_List)
+            
+            while q:
+                n = len(q)
+                cur_nodes_val = []
+                for _ in range(n):
+                    cur_node = q.popleft()
+                    cur_nodes_val.append(cur_node.val)
+                    
+                    if cur_node.left:
+                        q.append(cur_node.left)
+                    if cur_node.right:
+                        q.append(cur_node.right)
+                    
+                res.append(sum(cur_nodes_val)/n)
+        
+        bfs_helper([root])
+        return res
             
             

@@ -64,3 +64,16 @@ print(f"Example 1 Output: {matrix1}") # Expected: [[7,4,1],[8,5,2],[9,6,3]]
 matrix2 = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
 solver.rotate(matrix2)
 print(f"Example 2 Output: {matrix2}") # Expected: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+        
+        # step 1: transpose the matrix
+        for r in range(n):
+            for c in range(r + 1, n):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+        
+        # step 2: reverse each row to get the right answer
+        for i in range(n):
+            matrix[i].reverse()

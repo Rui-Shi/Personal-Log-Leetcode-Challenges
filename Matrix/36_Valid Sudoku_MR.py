@@ -89,4 +89,31 @@ class Solution:
 
         # If the loops complete without finding any duplicates, the board is valid
         return True
+
+# Time: O(1): loop through 81 cells O(81)
+# Space: O(1): each dic store up to 81 elements: O(81) for each and O(243) in total. 
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = collections.defaultdict(set)
+        cols = collections.defaultdict(set)
+        boxes = collections.defaultdict(set)
+        
+        for r in range(9):
+            for c in range(9):
+                box_id = (r // 3) * 3 + c // 3
+            
+            digit = board[r][c]
+            
+            if digit == ".":
+                    continue
+                
+            elif digit in rows[r] or digit in cols[c] or digit in boxes[box_id]:
+                return False
+            
+            else:
+                rows[r].add(digit)
+                cols[c].add(digit)     
+                boxes[box_id].add(digit)
+        
+        return True   
                     
