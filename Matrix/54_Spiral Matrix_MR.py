@@ -105,3 +105,45 @@ print(f"Output: {sol.spiralOrder(matrix4)}") # Output: [1, 2, 3]
 matrix5 = [[1, 2], [3, 4]]
 print(f"Input: {matrix5}")
 print(f"Output: {sol.spiralOrder(matrix5)}") # Output: [1, 2, 4, 3]
+
+# Time: O(m x n)
+# Space: O(1)
+class Solution:
+    """
+    This class provides a method to return all elements of a matrix in spiral order.
+    """
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        # deal with the case that matrix = [] or [[]]
+        if not matrix or not matrix[0]:
+            return []
+        
+        top, bottom = 0, len(matrix) - 1
+        left, right = 0, len(matrix[0]) - 1
+        
+        res = []
+        
+        while top <= bottom and left <= right:
+            for j in range(left, right + 1):
+                res.append(matrix[top][j])
+            
+            top += 1
+            
+            if top <= bottom and left <= right:
+                for i in range(top, bottom + 1):
+                    res.append(matrix[i][right])
+                
+                right -= 1
+            
+            if top <= bottom and left <= right:
+                for j in range(right, left - 1, -1):
+                    res.append(matrix[bottom][j])
+                bottom -= 1
+            
+            if top <= bottom and left <= right:
+                for i in range(bottom, top - 1, -1): # Iterate backwards
+                    res.append(matrix[i][left])
+                left += 1 # Move the left boundary right
+
+        return res
+                    
+                

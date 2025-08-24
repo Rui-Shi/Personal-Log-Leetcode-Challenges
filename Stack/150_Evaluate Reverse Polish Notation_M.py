@@ -38,6 +38,7 @@ from typing import List
 
 
 class Solution:
+    # this block effectively check whether a char is a int
     def evalRPN(self, tokens: List[str]) -> int:
         def is_integer_string(s):
             try:

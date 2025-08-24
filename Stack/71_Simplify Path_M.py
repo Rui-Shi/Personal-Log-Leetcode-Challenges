@@ -163,30 +163,22 @@ def run_tests():
 
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        # Use a stack to keep track of valid directory names.
-        stack = []
-        
-        # Split the path by slashes to process each component.
         components = path.split("/")
         
-        # Iterate over each component of the path.
+        stack = []
+        
         for component in components:
-            # Ignore empty strings (from multiple slashes) and single dots (current directory).
-            if component == "" or component == ".":
+            if component == "." or component == '':
                 continue
-            # If the component is '..', go up one level by popping from the stack.
+            
             elif component == "..":
-                # Only pop if the stack is not empty (can't go up from the root).
                 if stack:
                     stack.pop()
-            # Otherwise, the component is a directory name, so add it to the stack.
+            
             else:
                 stack.append(component)
         
-        # Join the components in the stack with slashes to form the simplified path.
-        # Prepend a single slash to create the final absolute path format.
-        sim_path = "/" + "/".join(stack)
-        
-        return sim_path
-        
+        return "/" + "/".join(stack)
+            
+                    
                                 
