@@ -22,6 +22,7 @@
 
 # -231 <= x <= 231 - 1
 
+# Time and space: O(n)
 class Solution:
     def reverse(self, x: int) -> int:
         bound = 2 ** 31
@@ -34,7 +35,7 @@ class Solution:
             negative = not negative
         
         if negative:
-            x_inverse = -1 * int(x_str[1:][::-1])
+            x_inverse = -1 * int(x_str[1:][::-1]) # inverse takes O(n), int takes O(n), x_inverse takes O(n) space.
         
         else:
             x_inverse = int(x_str[::-1])

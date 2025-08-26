@@ -34,8 +34,6 @@ class Solution:
             i += 1
         return strs[0][0:length_min] # Handle cases where the loop finishes
 
-
-
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         len_min = min(map(len, strs))
@@ -43,13 +41,13 @@ class Solution:
             return ""
         
         i = 0
-        while i <= len_min:
+        while i < len_min:
             char = strs[0][i]
             for str in strs:
-                if str[0] != char:
+                if str[i] != char:
                     return str[0:i]
             
             i += 1
         
-        return str[0][0:len_min]
+        return strs[0][0:len_min]
 

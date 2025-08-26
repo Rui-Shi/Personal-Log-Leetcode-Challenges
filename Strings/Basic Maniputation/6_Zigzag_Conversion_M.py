@@ -94,6 +94,8 @@ class Solution:
         # Join all the row strings together for the final result
         return "".join(rows)
 
+# Time: O(n)
+# Space: O(n)
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         if numRows == 1 or len(s) <= numRows:
