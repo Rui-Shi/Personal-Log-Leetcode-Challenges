@@ -32,3 +32,16 @@ class Solution:
             prev = curr  # Move prev forward
             curr = next_node  # Move curr forward
         return prev
+
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]: # Optional[ListNode]: the input can be empty or ListNode
+        prev = None
+        cur = head
+        while cur:
+            next_node = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next_node
+        return prev
+    

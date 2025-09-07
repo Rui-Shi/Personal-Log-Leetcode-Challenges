@@ -7,7 +7,7 @@
 # Example 1:
 
 
-# Input: head = [1,2,2,1]
+# Input: head = [1,2,3,2,1]
 # Output: true
 # Example 2:
 
@@ -62,3 +62,5 @@ class Solution:
             second_half = second_half.next
 
         return True  # If no mismatch found, it's a palindrome
+            
+    

@@ -48,14 +48,15 @@ class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head:
             return head
-
-        curr = head
-        while curr.next:
-            if curr.val == curr.next.val:
-                curr.next = curr.next.next
+        
+        cur = head
+        while cur.next:
+            if cur.val == cur.next.val:
+                cur.next = cur.next.next
+            
             else:
-                curr = curr.next
-
+                cur = cur.next
+        
         return head
             
             

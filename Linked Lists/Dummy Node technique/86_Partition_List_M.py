@@ -49,7 +49,8 @@ class Solution:
         greater_tail.next = None # important so that there is no cycle in the linked list
 
         return less_head.next  # Return the head of the combined list
-            
+    
+# create two part of the list and connect them togethor            
 class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
         small_head = ListNode(0)
