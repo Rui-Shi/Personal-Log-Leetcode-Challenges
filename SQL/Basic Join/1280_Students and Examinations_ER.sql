@@ -122,4 +122,6 @@ LEFT JOIN Examinations E
 GROUP BY S.student_id, S.student_name, SU.subject_name
 ORDER BY S.student_id, S.student_name, SU.subject_name
 
-# A CROSS JOIN in SQL is a type of join that returns the Cartesian product of two tables. This means that every row from the first table is combined with every row from the second table.
+-- A CROSS JOIN in SQL is a type of join that returns 
+-- the Cartesian product of two tables. This means that 
+-- every row from the first table is combined with every row from the second table.
