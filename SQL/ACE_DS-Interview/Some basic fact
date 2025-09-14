@@ -1,0 +1,13 @@
+Primary key:
+A unique identifier for each observation in each database table, it is similar to ID, with the following properties:
+
+Unique: Every value in the primary key column (or columns) must be unique, automaticlly indexed.
+Not Null: A primary key cannot contain any null or empty values. Every record must have a value for its primary key.
+
+
+
+Foreigh key:
+A foreign key is a column or a set of columns in a database table that refers to the primary key of another table. It's the "glue" that links tables together in a relational database.
+
+the Cardinality between primary key and foreign keys can be one-to-one, one-to-many, and many-to-many
+
