@@ -3,6 +3,7 @@ A unique identifier for each observation in each database table, it is similar t
 
 Unique: Every value in the primary key column (or columns) must be unique, automaticlly indexed.
 Not Null: A primary key cannot contain any null or empty values. Every record must have a value for its primary key.
+Stability: it should not change over time.
 
 
 
@@ -10,4 +11,52 @@ Foreigh key:
 A foreign key is a column or a set of columns in a database table that refers to the primary key of another table. It's the "glue" that links tables together in a relational database.
 
 the Cardinality between primary key and foreign keys can be one-to-one, one-to-many, and many-to-many
+
+
+
+Normalization:
+The process of separating out data to prevent redundancy. But it require expensive join operations.
+
+Denormalization:
+Keep all the redundant data by avoiding splitting out the data, it prevent expensive join operations.
+
+
+
+CAP and ACID framework: P149
+
+
+
+Scaling Databases:
+Is the strategic process of increasing a database's capacity to manage a growing workload without compremising performance.
+
+1. vertical scaling
+upgrade CPU, RAM, etc.
+pros: quick and simiple
+cons: expensive, has physical limits.
+
+2. Horizontal Scaling
+add more machines (nodes) to a system.
+pros: cheaper
+cons: challenges in infrasturcture management
+
+
+
+Relational (SQL) Database and NoSQL Database:
+1. Relational (SQL) Database:
+Data is organized into table structure with predefined columns and data types. This rigid structure ensures data consistency and integrity.
+pros: Ensure data integrity through a defined schema and structure, uses standard query language, easier to learn, mature technology and well-established
+cons: lack of flexibility, primarily scale vertically.
+
+2. NoSQL Databases:
+They do not require a predefined schema or table structure and can store various types of data, including structured, semi-structured, and unstructured data.
+pros: high flexibility, cost-effective horizontal scalability
+cons: not consistency on schema and data structure, No SQL language, less mature.
+
+
+
+MapReduce P152:
+A popular data processing framework that allows for concurrent processing of large volumes of data
+
+
+
 
