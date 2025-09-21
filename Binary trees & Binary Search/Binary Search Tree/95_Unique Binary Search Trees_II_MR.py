@@ -77,4 +77,43 @@ class Solution:
             return all_trees
 
         return generate(1, n)
+    
+    
+    
+    
+class Solution:
+    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
+        # base case n = 0
+        
+        if n == 0:
+            return []
+        
+        memo = {}
+        
+        def generate(start, end):
+            
+            if start > end:
+                return [None]
+            
+            if (start, end) in memo:
+                return memo[(start, end)]
+
+            all_trees = []
+            for i in range(start, end + 1):
+                
+                left_subtrees = generate(start, i - 1)
+                right_subtrees = generate(i + 1, end)
+                
+                for left_subtree in left_subtrees:
+                    for right_subtree in right_subtrees:
+                        root = TreeNode(i, left_subtree, right_subtree)
+                        all_trees.append(root)
+            
+            memo[(start, end)] = all_trees
+            return all_trees
+            
+        return generate(1, n)
+        
+          
+        
         

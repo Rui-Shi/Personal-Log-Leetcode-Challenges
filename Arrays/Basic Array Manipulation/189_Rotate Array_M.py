@@ -42,7 +42,7 @@ class Solution:
         
 # Better one
 # Time complexity: O(n) ]
-# Space complexity: O()
+# Space complexity: O(n)
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """

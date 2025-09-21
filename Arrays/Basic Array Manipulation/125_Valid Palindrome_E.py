@@ -52,7 +52,7 @@ class Solution:
         s = s.lower() # change all to the lower case: O(n)
         
         for char in s: # O(n)
-            if char.isalnum():
+            if char.isalnum(): # check if a char is a letter or num
                 s_clean += char
         
         if s_clean == s_clean[::-1]:
