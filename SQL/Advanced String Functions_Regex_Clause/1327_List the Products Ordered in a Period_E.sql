@@ -82,7 +82,7 @@ WITH unit_sum AS (
     SELECT p.product_name,
     SUM(o.unit) AS unit
     FROM Products p
-    LEFT JOIN Orders O
+    LEFT JOIN Orders 0
     ON p.product_id = o.product_id
     WHERE order_date >= '2020-02-01' and order_date <= '2020-02-29'
     GROUP BY product_name

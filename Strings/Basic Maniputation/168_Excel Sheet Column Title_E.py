@@ -46,7 +46,8 @@ class Solution:
         
         return res[::-1]
             
-
+s = Solution()
+print(s.convertToTitle(52))
 # The reminder - 1 is needed because standard mathematical operations like modulo (%) 
 # and integer division (//) work with a 0-indexed system, but Excel's column titles are a 1-indexed system.
 
