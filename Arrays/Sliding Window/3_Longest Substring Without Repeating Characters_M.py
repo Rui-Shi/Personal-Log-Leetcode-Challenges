@@ -42,21 +42,24 @@ class Solution:
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         left = 0
-        right = 0
         max_length = 0
         char_set = set()
         
-        while right < len(s):
-            if s[right] not in char_set:
-                char_set.add(s[right])
-                right += 1
+        # The 'right' pointer is controlled by the for loop
+        for right in range(len(s)):
+            # If the current character is a duplicate...
+            # ...shrink the window from the left until it's gone.
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
             
-            else:
-                while s[right] in char_set:
-                    char_set.remove(s[left])
-                    left += 1
-            max_length = max(max_length, len(char_set))
-        
+            # Add the current character to the window
+            char_set.add(s[right])
+            
+            # Calculate the length of the CURRENT valid window and update max_length
+            # This is the key change!
+            max_length = max(max_length, right - left + 1)
+            
         return max_length
                 
                 

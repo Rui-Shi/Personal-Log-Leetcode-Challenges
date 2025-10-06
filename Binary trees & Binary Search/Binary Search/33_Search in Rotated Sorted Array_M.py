@@ -98,7 +98,8 @@ class Solution:
         return -1
                      
                 
-
+s = Solution()
+print(s.search([1, 0, 1, 1, 1], 0))
 
         
         

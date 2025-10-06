@@ -106,33 +106,29 @@ class Solution:
 
 class Solution:
     def productExceptSelf(self,nums):
-        """
-        Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
-        The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
-        You must write an algorithm that runs in O(n) time and without using the division operation.
+        zero_count = nums.count(0)
+       
+        if zero_count >= 2:
+           return [0] * len(nums)
+       
+        else:
+            pre_fix = [1] * len(nums)
+            post_fix = [1] * len(nums)
+            for i in range(1, len(nums)):
+                pre_fix[i] = pre_fix[i - 1] * nums[i - 1]
+                
+            for j in range(len(nums) - 2, -1, -1):
+                post_fix[j] = post_fix[j + 1] * nums[j + 1]
+        
+        res = []
+        for i in range(len(nums)):
+            res.append(pre_fix[i] * post_fix[i])
+        return res
+                
+                
+           
 
-        Args:
-            nums: A list of integers.
 
-        Returns:
-            A list of integers.
-        """
-        n = len(nums)
-        answer = [1] * n
-        
-        # Calculate prefix products
-        prefix = 1
-        for i in range(1, n):
-            prefix *= nums[i - 1]
-            answer[i] *= prefix
-        
-        # Calculate suffix products and multiply with prefix products
-        suffix = 1
-        for i in range(n - 2, -1, -1):
-            suffix *= nums[i + 1]
-            answer[i] *= suffix
-        
-        return answer
     
 
 

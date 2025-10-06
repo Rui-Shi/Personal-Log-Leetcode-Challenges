@@ -5,6 +5,7 @@ FROM (
     company_id, -- Added comma
     ROW_NUMBER() OVER ( -- Corrected function name
       PARTITION BY
+        company_id
         title,
         description
       ORDER BY

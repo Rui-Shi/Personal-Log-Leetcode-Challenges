@@ -100,10 +100,10 @@ class Solution:
                 right_view.append(node_list_level[-1].val) # Now node_list_level won't be empty
 
         return right_view
-            
-                    
-
-
+    
+# Time complexity O(N) N: the number of node
+# Space complexity O(W) W: the max width of the tree
+from collections import deque     
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -111,32 +111,27 @@ class TreeNode:
         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-
+        
         if not root:
             return []
-
-        def bfs_helpter(node_list):
-            res = []
-            
-            current_level = node_list
-            next_level = []
-            
-            while current_level:
-                res.append(list(current_level))
-
-                next_level.clear()
-                for node in current_level:
-                    if node.left:
-                        next_level.append(node.left)
-                    if node.right:
-                        next_level.append(node.right)
-                        
-                current_level = list(next_level)
-            return res
         
-        bfs_res = bfs_helpter([root])
-        right_view = []
-        for node_list in bfs_res:
-            right_view.append(node_list[-1].val)
+        res = []
+        def bfs_helper(node_list):
+            q = deque(node_list)
             
-        return right_view 
+            while q:
+                n_cur = len(q)
+                
+                for i in range(n_cur):
+                    cur_node = q.popleft()
+                    if cur_node.left:
+                        q.append(cur_node.left)
+                    
+                    if cur_node.right:
+                        q.append(cur_node.right)
+                
+                res.append(cur_node.val)
+        
+        bfs_helper([root])
+        
+        return res

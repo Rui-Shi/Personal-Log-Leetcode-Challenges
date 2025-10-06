@@ -107,7 +107,7 @@ numCourses2 = 2
 prerequisites2 = [[1, 0], [0, 1]]
 print(f"Output for Example 2: {canFinish(numCourses2, prerequisites2)}")  # Expected: false                     
                     
-
+# Time complexity: O(V + E)
 from collections import deque
 from collections import defaultdict
 class Solution:

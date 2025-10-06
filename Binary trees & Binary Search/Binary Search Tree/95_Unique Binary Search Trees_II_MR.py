@@ -77,10 +77,9 @@ class Solution:
             return all_trees
 
         return generate(1, n)
-    
-    
-    
-    
+
+
+ 
 class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
         # base case n = 0
@@ -114,6 +113,6 @@ class Solution:
             
         return generate(1, n)
         
-          
+         
         
         

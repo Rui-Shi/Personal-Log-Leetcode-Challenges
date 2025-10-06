@@ -103,4 +103,29 @@ class Solution:
         print(self.res_left)
         print(self.res_right)
         return s[self.res_left : self.res_right + 1]
+
+# Time complexity: O(N^2)
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        self.res_left = 0
+        self.res_right = 0
+        self.max_len = 0
+        
+        n = len(s)
+        
+        def expand_palindromic(s, left, right):
+          while left >= 0 and right < n and s[left] == s[right]:
+            if right - left + 1 > self.max_len:
+              self.res_left, self.res_right = left, right
+              self.max_len = right - left
             
+            left -= 1
+            right += 1
+        
+        for i in range(len(s)):
+          expand_palindromic(s, i, i)
+          expand_palindromic(s, i, i + 1)
+        
+        return s[self.res_left : self.res_right]
+            
+          

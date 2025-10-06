@@ -1,3 +1,18 @@
+# LeetCode 159, "Longest Substring with At Most Two Distinct Characters," is a problem that challenges you to find the length of the longest possible contiguous substring within a given string that contains no more than two unique characters.
+
+# Problem Breakdown
+# Input: A string, s.
+
+# Goal: Find the maximum length of a substring of s.
+
+# Constraint: The substring must contain at most two different characters.
+
+# For instance:
+
+# If the input is "eceba", the longest substring that meets the criteria is "ece", which has a length of 3 (the distinct characters are 'e' and 'c').
+
+# If the input is "ccaabbb", the longest substring is "aabbb", with a length of 5 (the distinct characters are 'a' and 'b').
+
 # Time: O(n)
 # Space: O(n)
 

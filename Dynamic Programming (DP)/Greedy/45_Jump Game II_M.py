@@ -51,6 +51,41 @@ print(result)
 class Solution:
     def jump(self, nums):
         n = len(nums)
+        # If the array has 1 or 0 elements, we're already at the end.
+        if n <= 1:
+            return 0
+        
+        # jumps: The number of jumps we've taken so far.
+        jumps = 0
+        # current_reach: The farthest index we can reach with the current number of jumps.
+        current_reach = 0
+        # farthest_reach: The absolute farthest index we can reach from any position
+        #                 within the current jump's range.
+        farthest_reach = 0
+        
+        # We iterate up to n-1 because we don't need to jump from the last element.
+        for i in range(n - 1):
+            # At each position 'i', calculate how far we could jump and update
+            # the farthest possible reach for our *next* jump.
+            farthest_reach = max(farthest_reach, i + nums[i])
+            
+            # If our loop index 'i' has reached the boundary of our current jump...
+            if current_reach == i:
+                # ...it's time to make the next jump.
+                jumps += 1
+                # The new boundary becomes the farthest reach we calculated.
+                current_reach = farthest_reach
+                
+                # An optimization: if the new boundary already reaches or surpasses
+                # the end of the array, we can stop and return the answer.
+                if current_reach >= n - 1:
+                    return jumps
+            
+        return jumps
+
+class Solution:
+    def jump(self, nums):
+        n = len(nums)
         if n <= 1:
             return 0
         
