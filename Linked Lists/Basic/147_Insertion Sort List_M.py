@@ -118,7 +118,7 @@ class Solution:
                 
                 # insert to new position
                 cur.next = pointer.next
-                pointer.next = cur
+                pointer.next = cur.next
                 
             cur = last_sorted.next
         
