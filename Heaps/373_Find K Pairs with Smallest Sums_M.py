@@ -72,7 +72,7 @@ class Solution:
             res = []
         
         while k > 0 and heap:
-            urrent_sum, i, j = heapq.heappop(heap)
+            current_sum, i, j = heapq.heappop(heap)
             res.append([nums1[i], nums2[j]])   
             k -= 1
             
