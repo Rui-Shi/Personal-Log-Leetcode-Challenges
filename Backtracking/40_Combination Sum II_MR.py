@@ -57,7 +57,7 @@ class Solution:
     backtrack(0, [], 0)
     return res
 
-# Time complexity O(N * 2^N)
+# Time complexity O(N * 2^N) # for each candidate, we can choose to skip or include, the depth is up to N
 # Space Auxiliary: O(N)
 # a better one
 from typing import List
@@ -86,7 +86,7 @@ class Solution:
         # If the current element is the same as the previous one, and it's not the
         # first element in the current recursive step, skip it. This ensures
         # that for a set of duplicates, we only start a new path with the first one.
-        if i > start_index and candidates[i] == candidates[i-1]:
+        if i > start_index and candidates[i] == candidates[i - 1]:
           continue
         
         # --- Choose the element ---
