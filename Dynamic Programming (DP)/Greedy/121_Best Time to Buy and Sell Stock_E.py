@@ -40,9 +40,11 @@ class Solution:
         profit = 0
         
         for p in prices[1:]:
+            # whenever found a lower price, start with this price
             if p < buy_price:
                 buy_price = p
             
+            # update the max profit
             profit = max(profit, p - buy_price)
         
         return profit

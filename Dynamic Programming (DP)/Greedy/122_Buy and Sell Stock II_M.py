@@ -38,6 +38,8 @@ class Solution:
                     profit_cum += profit
         return profit_cum
     
+# This "greedy" approach of taking every small, 
+# guaranteed profit works perfectly for this specific problem
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         profit_cum = 0
@@ -47,6 +49,6 @@ class Solution:
         else:
             for i in range(1, len(prices)):
                 if prices[i] - prices[i - 1] > 0:
-                    profit_cum =+ prices[i] - prices[i - 1]
+                    profit_cum += prices[i] - prices[i - 1]
         
         return profit_cum
