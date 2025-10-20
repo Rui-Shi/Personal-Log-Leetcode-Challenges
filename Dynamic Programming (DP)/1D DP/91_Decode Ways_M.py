@@ -91,3 +91,30 @@ class Solution:
             dp.append(current_ways)
 
         return dp[-1]
+
+# Time complexity: O(n)
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        # base case when s[0] = 0
+        n = len(s)
+        if s[0] == '0':
+            return 0
+        
+        if n == 1:
+            return 1
+        
+        # dp[0] = 1 (for the empty string) and dp[1] = 1 (for the first character).
+        dp = [1, 1]
+        for i in range(1, n): # starting from the second string
+            cur_ways = 0
+            if s[i] != '0':
+                cur_ways += dp[i]
+            
+            if 10 <= int(s[i-1:i+1]) <= 26:
+                cur_ways += dp[i-1]
+            
+            dp.append(cur_ways)
+        return dp[-1]
+                
+            
+            
