@@ -78,6 +78,28 @@ def count_partitions(num):
 print(f"The number of partitions for 7 is: {count_partitions(7)}")
 print(f"The number of partitions for 10 is: {count_partitions(10)}")
 
+def count_partitions(num):
+    dp = [[-1 for _ in range(num + 1)] for _ in range(num + 1)]
+    
+    def h(remaining, threshold, dp):
+        if remaining == 0:
+            dp[remaining][threshold] = 1
+            return 1
+        
+        if remaining < 0 or threshold == 0:
+            dp[remaining][threshold] = 0
+            return 0
+        
+        res = 0
+        for i in range(threshold, 0, -1):
+            res += h(remaining - i, min(i, remaining - i), dp)
+        
+        dp[remaining][threshold] = res
+        return res
+
+    return h(num, num, dp)
+            
+
 
 
     
