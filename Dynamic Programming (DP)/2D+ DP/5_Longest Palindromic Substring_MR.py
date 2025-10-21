@@ -104,28 +104,40 @@ class Solution:
         print(self.res_right)
         return s[self.res_left : self.res_right + 1]
 
-# Time complexity: O(N^2)
+# Time complexity: O(N^2)： for loop O(n), expansion function O(n) 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        self.res_left = 0
-        self.res_right = 0
-        self.max_len = 0
+        # Handle edge cases for empty or single-character strings
+        if len(s) < 2:
+            return s
+            
+        self.left = 0
+        self.max_len = 1 # A single character is the smallest palindrome
         
-        n = len(s)
+        # Main loop to iterate through all possible centers
+        for i in range(len(s)):
+            # Check for odd-length palindromes (center is one character)
+            self.expand_palindromic(s, i, i)
+            # Check for even-length palindromes (center is between two characters)
+            self.expand_palindromic(s, i, i + 1)
         
-        def expand_palindromic(s, left, right):
-          while left >= 0 and right < n and s[left] == s[right]:
-            if right - left + 1 > self.max_len:
-              self.res_left, self.res_right = left, right
-              self.max_len = right - left
+        return s[self.left : self.left + self.max_len]
+
+    # This is now a proper method of the class
+    def expand_palindromic(self, s, left, right):
+        # Expand as long as pointers are in bounds and characters match
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            current_len = right - left + 1
+            if current_len > self.max_len:
+                self.max_len = current_len
+                self.left = left # We only need the start and length
             
             left -= 1
             right += 1
+          
+              
         
-        for i in range(len(s)):
-          expand_palindromic(s, i, i)
-          expand_palindromic(s, i, i + 1)
         
-        return s[self.res_left : self.res_right]
+        
             
           

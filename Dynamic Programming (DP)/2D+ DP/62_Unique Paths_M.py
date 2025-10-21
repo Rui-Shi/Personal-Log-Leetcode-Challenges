@@ -33,7 +33,7 @@ class Solution:
 # Time complexity: O(m+n)
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        dp = [[0 for _ in range(m)] for _ in range(n)] # create a n*m matrix for dp # create a m*n matrix for dp
+        dp = [[0 for _ in range(m)] for _ in range(n)] # create a n*m matrix for dp
         
         for i in range(n):
             for j in range(m):

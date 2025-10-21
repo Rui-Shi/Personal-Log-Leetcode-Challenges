@@ -1,4 +1,5 @@
-# Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+# Given a string s and a dictionary of strings wordDict, return true if s can be segmented into 
+# a space-separated sequence of one or more dictionary words.
 
 # Note that the same word in the dictionary may be reused multiple times in the segmentation.
 
@@ -70,7 +71,20 @@ class Solution:
         # The final result is stored in dp[len(s)], which indicates whether
         # the entire string 's' (s[0...len(s)-1]) can be segmented.
         return dp[-1]
-    
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        dp = [True] + [False] * len(s)
+        for i in range(1, len(s) + 1):
+            for word in wordDict:
+                n = len(word)
+                start = i - n
+                if start > 0 and dp[start] and s[start:i] == word:
+                    dp[i] = True
+        
+        return dp[-1]
+
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         dp = [True] + [False] * len(s)
