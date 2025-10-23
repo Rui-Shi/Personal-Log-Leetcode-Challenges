@@ -38,6 +38,7 @@ class Solution:
 # Time complexity O(nlogk)
 # heapq.heappush(min_heap, num): O(logk)
 # space complexity O(K)
+  
 
 import heapq
 class Solution:
@@ -45,10 +46,10 @@ class Solution:
     min_heap = []
     
     for num in nums:
-      heapq.heappush(min_heap, num)
+      heapq.heappush(min_heap, num) # pop the smallest element
       if len(min_heap) > k:
         heapq.heappop(min_heap)
     
-    return min_heap[0]
+    return min_heap[0] # Because it's a min-heap, the smallest element within this group of $k$ largest elements is at the top (min_heap[0])
     
         

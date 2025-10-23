@@ -55,22 +55,23 @@ class Solution:
             return 1
         
         factors = [2, 3, 5]
+        num_list = [1]
+        memo = set([1])
         count = 0
-        nums_seen = set([1])
-        min_heap = [1]
-        nums_seen = set([1])
         
         while count < n:
-            cur_num = heapq.heapop(min_heap)
+            cur_num = heapq.heappop(num_list)
             count += 1
+            
             for factor in factors:
                 next_num = cur_num * factor
-                if next_num not in nums_seen:
-                    nums_seen.add(next_num)
-                    heapq.heappush(min_heap, next_num) # O(log n) worst case
-        
+                if next_num not in memo:
+                    memo.add(next_num)
+                    heapq.heappush(num_list, next_num) # O(log n) worst case
+            
         return cur_num
                     
+            
                 
         
         
