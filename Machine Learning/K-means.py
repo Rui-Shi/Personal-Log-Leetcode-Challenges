@@ -80,32 +80,33 @@ class ML_clustering:
 
 
 class K_means:
-    def __init__(self, input_data, k, max_iter = 5000):
-        self.data = input_data
+    def __init__(self, input_data, k, max_iter):
+        self.input_data = input_data
+        self.k = k
         self.max_iter = max_iter
-        self.k
-            
+    
     def fit(self):
-        n_samples = self.data.shape[0]
-        random_index = np.random.choice(n_samples, k, replace = False)
-        centroids = self.data[random_index]
-        clusters = np.zeros(n_samples)
+        n, d = self.input_data.shape
+        random_index = np.random.choice(n, k, replace = False)
+        centroids = self.input_data[random_index]
+        cluster_labels = np.zero(n)
         
         for _ in range(self.max_iter):
-            old_clusters = clusters.copy()
-            for index, point in self.data:
+            old_cluster_labels = cluster_labels.copy()
+            for index, point in enumerate(self.input_data):
                 dists = [np.sqrt(np.sum((point - centroid) ** 2)) for centroid in centroids]
-                clusters[index] = np.argmin(dists)
+                cluster_labels[index] = np.argmin(dists)
             
-            if old_clusters == clusters:
+            if old_cluster_labels == cluster_labels:
                 break
             
             for cluster_index in range(k):
-                points_in_cluster = self.data[clusters == cluster_index]
-                if len(points_in_cluster) > 0:
-                    centroids[cluster_index] = np.mean(points_in_cluster, axis=0)
-    
-        return centroids, clusters
+                clusters = self.input_data[cluster_labels == cluster_index]
+                centroids[cluster_index] = np.mean(clusters, axis = 0)
+        
+        return centroids, cluster_labels
+                
+        
                     
             
         

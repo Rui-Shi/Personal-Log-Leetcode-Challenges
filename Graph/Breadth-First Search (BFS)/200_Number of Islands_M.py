@@ -32,8 +32,7 @@
 # grid[i][j] is '0' or '1'.
 
 from typing import List
-
-
+from collections import deque
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         islands = 0
@@ -42,12 +41,12 @@ class Solution:
         directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
         
         def bfs(r, c):
-            q = []
+            q = deque([])
             visited.add((r, c))
             q.append((r, c))
             
             while q:
-                row, col = q.pop(0)
+                row, col = q.popleft()
                 
                 for dr, dc in directions:
                     r, c = row + dr, col + dc
@@ -63,7 +62,7 @@ class Solution:
     
         return islands
     
-# bfs:
+# Dfs: O(N x M)
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:

@@ -112,7 +112,7 @@ class Solution:
                 node_copy = Node(node.val)
                 old_to_new_mapping[node] = node_copy
                 node_copy.neighbors = [dfs_helper(neighbor) for neighbor in node.neighbors]
-                return copyright
+                return node_copy
             
         return dfs_helper(node)
                 

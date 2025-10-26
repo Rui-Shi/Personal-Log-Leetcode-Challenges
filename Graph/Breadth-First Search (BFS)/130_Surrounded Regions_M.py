@@ -101,6 +101,7 @@ class Solution:
         def bfs_helper(r, c):
             nonlocal visited
             q = deque([(r, c)])
+            visited.add((r, c))
             surrounded = True
             region = []
             
@@ -109,7 +110,6 @@ class Solution:
                 if r == 0 or r == nrow - 1 or c == 0 or c == ncol - 1:
                     surrounded = False
                 
-                visited.add((r, c))
                 region.append((r, c))
                 
                 for dr, dc in directions:
@@ -118,6 +118,7 @@ class Solution:
                 
                     if 0 <= r_new < nrow and 0 <= c_new < ncol and board[r_new][c_new] == 'O' and \
                             (r_new, c_new) not in visited:
+                                visited.add((r_new, c_new))
                                 q.append((r_new, c_new))
                          
             if surrounded:
