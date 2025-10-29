@@ -56,9 +56,9 @@ class LogRegression:
         n_samples, n_features = X.shape
         self.coeff = np.zeros(n_features)
         self.bias = 0
-        for _ in range(self.learning_rate):
+        for _ in range(self.max_iter):
             linear_model = np.dot(X, self.coeff) + self.bias
-            y_predicted = self._sigmoid(linear_model)
+            y_predicted = self.logit(linear_model)
             dw =
             db = 
             self.coeff -= self.learning_rate * dw
@@ -66,7 +66,7 @@ class LogRegression:
     
     def predict_proba(self, X):
         linear_model = np.dot(X, self.weights) + self.bias
-        return self._sigmoid(linear_model)
+        return self.logit(linear_model)
     
     def predit(self, X_new, threshold = 0.5):
         y_predicted_probs = self.predict_proba(X)

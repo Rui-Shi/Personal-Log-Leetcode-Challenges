@@ -53,7 +53,7 @@ class Solution:
         
         return result
     
-
+# Time: O(nlogn + klogn)
 import heapq
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
@@ -61,12 +61,12 @@ class Solution:
         min_heap = []
         
         for r in range(n):
-            heapq.heappush(min_heap, (matrix[r][0], r, 0))
+            heapq.heappush(min_heap, (matrix[r][0], r, 0)) # log n
         
         for _ in range(k):
             result, r, c = heapq.heappop(min_heap)
             
             if c + 1 < n:
-                heapq.heappush(min_heap, (matrix[r][c + 1], r, c + 1))
+                heapq.heappush(min_heap, (matrix[r][c + 1], r, c + 1)) # log n
         
         return result    
