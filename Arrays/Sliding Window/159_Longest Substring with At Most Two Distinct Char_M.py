@@ -1,4 +1,5 @@
-# LeetCode 159, "Longest Substring with At Most Two Distinct Characters," is a problem that challenges you to find the length of the longest possible contiguous substring within a given string that contains no more than two unique characters.
+# LeetCode 159, "Longest Substring with At Most Two Distinct Characters," 
+# is a problem that challenges you to find the length of the longest possible contiguous substring within a given string that contains no more than two unique characters.
 
 # Problem Breakdown
 # Input: A string, s.
@@ -45,30 +46,29 @@ class solution:
 # Space: O(1) (count_dict will never hold more than 3 keys)
 
 import collections
-
 class solution:
     def LongestSubstring(self, s):
         
         if len(s) <= 2:
             return len(s)
         
-        count_dict = collections.defaultdict(int)
-        
+        max_len = 0
         left = 0
-        max_length = 0
-        for right in range(len(s)):
-            char_right = s[right]
-            count_dict[char_right] += 1
+        char_count = collections.defaultdict(int)
+        
+        for right in range(0, len(s)):
+            char_count[s[right]] += 1
             
-            while len(count_dict) > 2:
-                char_left = s[left]
-                count_dict[char_left] -= 1
-                
-                if count_dict[char_left] <= 0:
-                    del count_dict[char_left]
+            while len(char_count) > 2:
+                char_count[s[left]] -= 1
+                if char_count[s[left]] <= 0:
+                    del char_count[s[left]]
                 
                 left += 1
+            
+            max_len = max(max_len, right - left + 1)
+    
+        return max_len
                     
-            max_length = max(max_length, right - left + 1)
-        
-        return max_length
+            
+            
