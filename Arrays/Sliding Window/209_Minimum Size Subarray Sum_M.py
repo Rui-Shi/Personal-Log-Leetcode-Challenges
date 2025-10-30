@@ -56,7 +56,7 @@ class Solution:
                 left += 1
         
         return min_len if min_len!= float('inf') else 0  # Handle the case where no subarray is found
-            
+           
 # Time complexity O(n)
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
@@ -76,7 +76,7 @@ class Solution:
                 cur_sum -= nums[left]
                 left += 1
         
-        return min_len if min_len!= float('inf') else 0
+        return min_len if min_len != float('inf') else 0
             
                    
             
